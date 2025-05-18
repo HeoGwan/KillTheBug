@@ -1,0 +1,13 @@
+# 모든 텍스트 파일 자동 정규화
+* text=auto
+
+# Unity 텍스트 기반 파일들은 LF 고정 (모든 OS에서 통일되게)
+*.cs text eol=lf
+*.shader text eol=lf
+*.meta text eol=lf
+*.unity text eol=lf
+*.prefab text eol=lf
+*.mat text eol=lf
+*.anim text eol=lf
+*.controller text eol=lf
+*.asset text eol=lf

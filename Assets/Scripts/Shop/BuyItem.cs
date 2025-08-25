@@ -6,7 +6,7 @@ using TMPro;
 using CESCO;
 
 
-// µµ±¸ ±¸¸Å Ã¢
+// ë„êµ¬ êµ¬ë§¤ ì°½
 public class BuyItem : MonoBehaviour
 {
     public Image buyItemImage;
@@ -32,32 +32,32 @@ public class BuyItem : MonoBehaviour
         itemToolType = buyItemObj.GetComponent<ShopItem>().ToolType;
         itemPrice = buyItemObj.GetComponent<ShopItem>().ItemPrice;
 
-        // buyItemÀÇ Ã¹¹øÂ° ÀÚ½ÄÀº ItemImageÀÌ´Ù.
+        // buyItemì˜ ì²«ë²ˆì§¸ ìì‹ì€ ItemImageì´ë‹¤.
         // buyItem.transform.GetChild(0).gameObject.GetComponent<Image>()
-        // ±¸¸ÅÇÏ·Á´Â ¾ÆÀÌÅÛÀÇ ÀÌ¹ÌÁö Á¤º¸
+        // êµ¬ë§¤í•˜ë ¤ëŠ” ì•„ì´í…œì˜ ì´ë¯¸ì§€ ì •ë³´
         Tool toolInfo = buyItemObj.GetComponent<ShopItem>().ToolInfo;
 
         buyItemImage.sprite = toolInfo.ToolImage;
 
         // buyItem.GetComponent<Tool>()
-        // ±¸¸ÅÇÏ·Á´Â ¾ÆÀÌÅÛÀÇ Á¤º¸
+        // êµ¬ë§¤í•˜ë ¤ëŠ” ì•„ì´í…œì˜ ì •ë³´
         ItemName.text = toolInfo.ToolName;
         ItemRate.text = toolInfo.GetRateText();
         ItemRadius.text = toolInfo.GetRadiusText();
         ItemSpeed.text = toolInfo.GetSpeedText();
-        ItemPrice.text = itemPrice + "¿ø";
+        ItemPrice.text = itemPrice + "ì›";
         ItemInfo.text = toolInfo.ToolInfo;
     }
 
     public void Buy()
     {
-        // ±¸¸Å ¹öÆ°¿¡ ¿¬°áµÊ
+        // êµ¬ë§¤ ë²„íŠ¼ì— ì—°ê²°ë¨
         GameManager.instance.shopManager.BuyItem(itemToolType, itemPrice);
     }
 
     public void Cancel()
     {
-        // Ãë¼Ò ¹öÆ°¿¡ ¿¬°áµÊ
+        // ì·¨ì†Œ ë²„íŠ¼ì— ì—°ê²°ë¨
         gameObject.SetActive(false);
     }
 

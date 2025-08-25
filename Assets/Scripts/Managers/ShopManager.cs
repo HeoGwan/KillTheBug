@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using CESCO;
 
-// ShopManager¿¡¼± shopÀ» ¿­°í ´İ´Â ¿ªÇÒÀ» ¸Ã°í
-// Shop¿¡ ½ÇÁúÀûÀÎ ¾ÆÀÌÅÛÀ» ÀúÀåÇÑ µÚ BuyItem¿¡¼­ ÇÏ´Â ±¸¸Å ¹× Ãë¼Ò¸¦ ¸ÃÀ¸¸ç
-// »óÁ¡ ³ª°¡´Â ¿ªÇÒÀ» ¸Ã´Â´Ù.
+// ShopManagerì—ì„  shopì„ ì—´ê³  ë‹«ëŠ” ì—­í• ì„ ë§¡ê³ 
+// Shopì— ì‹¤ì§ˆì ì¸ ì•„ì´í…œì„ ì €ì¥í•œ ë’¤ BuyItemì—ì„œ í•˜ëŠ” êµ¬ë§¤ ë° ì·¨ì†Œë¥¼ ë§¡ìœ¼ë©°
+// ìƒì  ë‚˜ê°€ëŠ” ì—­í• ì„ ë§¡ëŠ”ë‹¤.
 
 public class ShopManager : MonoBehaviour
 {
@@ -13,7 +13,7 @@ public class ShopManager : MonoBehaviour
 
     public void Init()
     {
-        // ÃÊ±âÈ­ ÄÚµå ÀÛ¼º
+        // ì´ˆê¸°í™” ì½”ë“œ ì‘ì„±
         shop.Init();
     }
 
@@ -36,9 +36,9 @@ public class ShopManager : MonoBehaviour
             return false;
         }
 
-        // µµ±¸¸¦ ±¸¸ÅÇÏ¸é toolManager¸¦ ÅëÇØ ÇÃ·¹ÀÌ¾î¿¡°Ô µµ±¸¸¦ Àü´ŞÇØÁÖ°í
-        // ÇØ´ç µµ±¸¸¦ ±¸¸ÅÇß´Ù´Â Á¤º¸¸¦ shop¿¡°Ô ¾Ë·ÁÁØ µÚ
-        // ´Ù½Ã »óÁ¡¿¡ ÀÖ´Â µµ±¸¸¦ º¸¿©ÁÖµµ·Ï ÇÔ
+        // ë„êµ¬ë¥¼ êµ¬ë§¤í•˜ë©´ toolManagerë¥¼ í†µí•´ í”Œë ˆì´ì–´ì—ê²Œ ë„êµ¬ë¥¼ ì „ë‹¬í•´ì£¼ê³ 
+        // í•´ë‹¹ ë„êµ¬ë¥¼ êµ¬ë§¤í–ˆë‹¤ëŠ” ì •ë³´ë¥¼ shopì—ê²Œ ì•Œë ¤ì¤€ ë’¤
+        // ë‹¤ì‹œ ìƒì ì— ìˆëŠ” ë„êµ¬ë¥¼ ë³´ì—¬ì£¼ë„ë¡ í•¨
         GameManager.instance.soundManager.UIEffectPlay(UI_SOUND.BUY);
         GameManager.instance.CurrentPlayer.Money -= price;
         GameManager.instance.toolManager.GivePlayer(buyTool);

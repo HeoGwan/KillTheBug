@@ -26,12 +26,12 @@ public class ScreenManager : MonoBehaviour
     {
         if (screen == SCREEN.START || screen == SCREEN.INGAME)
         {
-            // BGM Ãâ·Â
+            // BGM ì¶œë ¥
             GameManager.instance.soundManager.BGMPlay(screen, delay);
         }
         else
         {
-            // BGM Ãâ·Â
+            // BGM ì¶œë ¥
             //GameManager.instance.soundManager.BGMStop();
         }
     }
@@ -40,28 +40,28 @@ public class ScreenManager : MonoBehaviour
     {
         if (screen == SCREEN.START || screen == SCREEN.INGAME)
         {
-            // BGM Ãâ·Â
+            // BGM ì¶œë ¥
             GameManager.instance.soundManager.BGMPlay(screen);
         }
         else
         {
-            // BGM Ãâ·Â
+            // BGM ì¶œë ¥
             //GameManager.instance.soundManager.BGMStop();
         }
     }
 
     public void ChangeScreen(SCREEN screen)
     {
-        // ÇØ´ç È­¸é ÀúÀå
+        // í•´ë‹¹ í™”ë©´ ì €ì¥
         ScreenStack.Push(screen);
-        // UI Ãâ·Â
+        // UI ì¶œë ¥
         GameManager.instance.uiManager.ActiveUI(screen);
         GameManager.instance.backgroundManager.ChangeBackground();
         //BGM(ScreenStack.Peek());
         
         if (screen == SCREEN.INGAME)
         {
-            // BGM Ãâ·Â
+            // BGM ì¶œë ¥
             GameManager.instance.soundManager.RandomBGMPlay();
         }
         else if (screen == SCREEN.GAMERULE)
@@ -78,7 +78,7 @@ public class ScreenManager : MonoBehaviour
     public void PrevScreen()
     {
         ScreenStack.Pop();
-        // UI ²ô±â
+        // UI ë„ê¸°
         GameManager.instance.uiManager.InActiveUI();
         GameManager.instance.backgroundManager.ChangeBackground();
 

@@ -12,10 +12,10 @@ public class ReinforceManager : MonoBehaviour
 
     public void Init()
     {
-        // ÃÊ±âÈ­ ÄÚµå ÀÛ¼º
+        // ì´ˆê¸°í™” ì½”ë“œ ì‘ì„±
         /*
-         * ÃÊ±âÈ­¸¦ ÇÏ°Ô µÈ´Ù¸é Can Select Tool¿¡ ÀÖ´Â ¿ÀºêÁ§Æ®¸¦ ÀüºÎ ¾ø¾Ø´Ù. 
-        */
+         * ì´ˆê¸°í™”ë¥¼ í•˜ê²Œ ëœë‹¤ë©´ Can Select Toolì— ìˆëŠ” ì˜¤ë¸Œì íŠ¸ë¥¼ ì „ë¶€ ì—†ì•¤ë‹¤.
+         */
         reinforce.Init();
     }
 
@@ -32,7 +32,7 @@ public class ReinforceManager : MonoBehaviour
 
     public void ReinforceToolRate()
     {
-        // ¿¬»ç ¼Óµµ °­È­
+        // ì—°ì‚¬ ì†ë„ ê°•í™”
         if (price.RatePrice == -1 || GameManager.instance.CurrentPlayer.Money < price.RatePrice)
         {
             GameManager.instance.soundManager.UIEffectPlay(UI_SOUND.CANCEL);
@@ -48,7 +48,7 @@ public class ReinforceManager : MonoBehaviour
 
     public void ReinforceToolRadius()
     {
-        // ¹üÀ§ °­È­
+        // ë²”ìœ„ ê°•í™”
         if (price.RadiusPrice == -1 || GameManager.instance.CurrentPlayer.Money < price.RadiusPrice)
         {
             GameManager.instance.soundManager.UIEffectPlay(UI_SOUND.CANCEL);
@@ -64,7 +64,7 @@ public class ReinforceManager : MonoBehaviour
     
     public void ReinforceToolSpeed()
     {
-        // ÀÌµ¿ ¼Óµµ °­È­
+        // ì´ë™ ì†ë„ ê°•í™”
         if (price.SpeedPrice == -1 || GameManager.instance.CurrentPlayer.Money < price.SpeedPrice)
         {
             GameManager.instance.soundManager.UIEffectPlay(UI_SOUND.CANCEL);
@@ -80,7 +80,7 @@ public class ReinforceManager : MonoBehaviour
     
     public void ReinforceToolDamage()
     {
-        // ÀÌµ¿ ¼Óµµ °­È­
+        // ì´ë™ ì†ë„ ê°•í™”
         if (price.DamagePrice == -1 || GameManager.instance.CurrentPlayer.Money < price.DamagePrice)
         {
             GameManager.instance.soundManager.UIEffectPlay(UI_SOUND.CANCEL);

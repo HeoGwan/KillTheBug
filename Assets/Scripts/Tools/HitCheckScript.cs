@@ -63,12 +63,12 @@ public class HitCheckScript : MonoBehaviour
 
         if (attackTime <= attackDelay)
         {
-            // ¾ÆÁ÷ °ø°ÝÇÏ¸é ¾ÈµÊ
+            // ì•„ì§ ê³µê²©í•˜ë©´ ì•ˆë¨
             attackTime += Time.deltaTime;
         }
         else
         {
-            // °ø°Ý
+            // ê³µê²©
             other.gameObject.GetComponent<Bug>().HitDamage(damage, toolType, hitDelay);
             attackTime = 0;
         }

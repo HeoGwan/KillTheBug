@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Reinforce : MonoBehaviour
 {
     /*
-     * °­È­¸¦ ÇØµµ ½ÇÁ¦ °¡Áö°í ÀÖ´Â µµ±¸¿¡ ¹İ¿µÀÌ ¾ÈµÊ -> Call by ¹®Á¦·Î ¿¹»ó
+     * ê°•í™”ë¥¼ í•´ë„ ì‹¤ì œ ê°€ì§€ê³  ìˆëŠ” ë„êµ¬ì— ë°˜ì˜ì´ ì•ˆë¨ -> Call by ë¬¸ì œë¡œ ì˜ˆìƒ
     */
     public TextMeshProUGUI showPlayerMoney;
     public GameObject toolDetail;
@@ -27,8 +27,8 @@ public class Reinforce : MonoBehaviour
     public void AddTool(GameObject tool)
     {
         /*
-         * ex) ¸Ç¼Õ¸¸ °¡Áø Ã¤ ÆÄ¸®Ã¤ ±¸¸Å ÈÄ ÆÄ¸®Ã¤¸¦ °­È­ÇÏ¸é
-         * ¸Ç¼Õµµ °°ÀÌ °­È­µÇ´Â ¹ö±× ¹ß»ı
+         * ex) ë§¨ì†ë§Œ ê°€ì§„ ì±„ íŒŒë¦¬ì±„ êµ¬ë§¤ í›„ íŒŒë¦¬ì±„ë¥¼ ê°•í™”í•˜ë©´
+         * ë§¨ì†ë„ ê°™ì´ ê°•í™”ë˜ëŠ” ë²„ê·¸ ë°œìƒ
         */
         //GameObject showTool = Instantiate(hasToolPrefab, canSelectToolObj.transform);
 
@@ -58,7 +58,7 @@ public class Reinforce : MonoBehaviour
 
     public void ShowMoney()
     {
-        showPlayerMoney.text = GameManager.instance.CurrentPlayer.Money + "¿ø";
+        showPlayerMoney.text = GameManager.instance.CurrentPlayer.Money + "ì›";
     }
 
     public Price ShowToolInfo()

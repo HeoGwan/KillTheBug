@@ -18,7 +18,7 @@ public class UIManager : MonoBehaviour
     public GameObject gameRule;
     public GameObject clear;
 
-    [Header("¡å Global Button")]
+    [Header("Global Button")]
     public GameObject playerButton;
 
     private List<GameObject> GameUI;
@@ -41,13 +41,13 @@ public class UIManager : MonoBehaviour
         GameUI.Insert((int)SCREEN.GAMERULE, gameRule);
         GameUI.Insert((int)SCREEN.CLEAR, clear);
 
-        // ¸ğµç UI¸¦ ºñÈ°¼ºÈ­ ÇÑ µÚ
+        // ëª¨ë“  UIë¥¼ ë¹„í™œì„±í™” í•œ ë’¤
         foreach(GameObject gameUI in GameUI)
         {
             gameUI.SetActive(false);
         }
 
-        // ½ÃÀÛ ¸Ş´º UI¸¸ È°¼ºÈ­
+        // ì‹œì‘ ë©”ë‰´ UIë§Œ í™œì„±í™”
         Init();
     }
 
@@ -58,16 +58,16 @@ public class UIManager : MonoBehaviour
         GameUIStack.Peek().SetActive(true);
         GamePauseButton.SetActive(false);
 
-        // ÇÃ·¹ÀÌ¾î °ü·Ã ¹öÆ° ºñÈ°¼ºÈ­
+        // í”Œë ˆì´ì–´ ê´€ë ¨ ë²„íŠ¼ ë¹„í™œì„±í™”
         playerButton.SetActive(false);
     }
 
     public void ActiveUI(SCREEN screen)
     {
-        // °¡Àå ÃÖ±Ù¿¡ º¸¿©Áø UI ºñÈ°¼ºÈ­
+        // ê°€ì¥ ìµœê·¼ì— ë³´ì—¬ì§„ UI ë¹„í™œì„±í™”
         GameUIStack.Peek().SetActive(false);
 
-        // ¼±ÅÃÇÑ UI È°¼ºÈ­
+        // ì„ íƒí•œ UI í™œì„±í™”
         GameUIStack.Push(GameUI[(int)screen]);
         GameUIStack.Peek().SetActive(true);
         if (GameManager.instance.GameState != GAME_STATE.START) GamePauseButton.SetActive(true);
@@ -79,7 +79,7 @@ public class UIManager : MonoBehaviour
 
     public void InActiveUI()
     {
-        // °¡Àå ÃÖ±Ù¿¡ º¸¿©Áø UI ºñÈ°¼ºÈ­ ¹× ½ºÅÃ »èÁ¦
+        // ê°€ì¥ ìµœê·¼ì— ë³´ì—¬ì§„ UI ë¹„í™œì„±í™” ë° ìŠ¤íƒ ì‚­ì œ
         GameObject recentUI = GameUIStack.Pop();
         recentUI.SetActive(false);
         if (recentUI == GameUI[(int)SCREEN.PAY]) { GameManager.instance.adMobManager.HideAd(); }
@@ -93,13 +93,13 @@ public class UIManager : MonoBehaviour
 
     public void GoMain()
     {
-        // ¸ŞÀÎ È­¸éÀ¸·Î µ¹¾Æ°¥ ½Ã °ÔÀÓ Á¾·á ÈÄ
-        // ÃÖ±Ù¿¡ Ãâ·ÂµÈ UI ºñÈ°¼ºÈ­ ÈÄ
-        // UI°¡ ´ã°ÜÁø ½ºÅÃ ÃÊ±âÈ­
+        // ë©”ì¸ í™”ë©´ìœ¼ë¡œ ëŒì•„ê°ˆ ì‹œ ê²Œì„ ì¢…ë£Œ í›„
+        // ìµœê·¼ì— ì¶œë ¥ëœ UI ë¹„í™œì„±í™” í›„
+        // UIê°€ ë‹´ê²¨ì§„ ìŠ¤íƒ ì´ˆê¸°í™”
         if (GameUIStack.Contains(GameUI[(int)SCREEN.PAY])) { GameManager.instance.adMobManager.HideAd(); }
         GameUIStack.Peek().SetActive(false);
 
-        // È­¸é, UI ÃÊ±âÈ­
+        // í™”ë©´, UI ì´ˆê¸°í™”
         Init();
     }
 

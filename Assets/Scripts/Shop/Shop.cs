@@ -6,20 +6,20 @@ using CESCO;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-// »óÁ¡ Ã¢
+// ìƒì  ì°½
 public class Shop : MonoBehaviour
 {
     public TextMeshProUGUI showPlayerMoney;
-    public GameObject ToolObjs; // ½ÇÁ¦ Àü½ÃµÇ´Â(±¸¸Å ÇÏ´Â) ¾ÆÀÌÅÛÀ» ¸ğ¾Æ³õÀº ¿ÀºêÁ§Æ®
+    public GameObject ToolObjs; // ìƒì ì— ë°°ì¹˜ë˜ëŠ”(ì•„ì´í…œì„ ë‹´ëŠ”) ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸
     public GameObject BuyItemObj;
-    public ShopItem[] Items; // º£ÀÌ½º°¡ µÇ´Â µµ±¸µé
+    public ShopItem[] Items; // ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸
 
     private List<GameObject> shopItems;
 
     private void Start()
     {
 #if UNITY_EDITOR
-        print("Shop È£Ãâ");
+        print("Shop í˜¸ì¶œ");
 #endif
         shopItems = new List<GameObject>();
         GetItems();
@@ -62,19 +62,19 @@ public class Shop : MonoBehaviour
     public void UnLock(TOOL tool)
     {
         shopItems[(int)tool].GetComponent<ShopItem>().UnLock();
-        shopItems[(int)tool].transform.GetChild(1).gameObject.SetActive(false); // Lock ÀÌ¹ÌÁö »èÁ¦
-        shopItems[(int)tool].GetComponent<Button>().onClick.RemoveAllListeners(); // ¹öÆ° ÀÌº¥Æ® »èÁ¦
+        shopItems[(int)tool].transform.GetChild(1).gameObject.SetActive(false); // Lock ì´ë¯¸ì§€ ë¹„í™œì„±í™”
+        shopItems[(int)tool].GetComponent<Button>().onClick.RemoveAllListeners(); // ë²„íŠ¼ ì´ë²¤íŠ¸ ì œê±°
     }
 
     public void Lock(TOOL tool)
     {
         shopItems[(int)tool].GetComponent<ShopItem>().Lock();
-        shopItems[(int)tool].transform.GetChild(1).gameObject.SetActive(true); // Lock ÀÌ¹ÌÁö º¸¿©ÁÜ
+        shopItems[(int)tool].transform.GetChild(1).gameObject.SetActive(true); // Lock ì´ë¯¸ì§€ í™œì„±í™”
         shopItems[(int)tool].GetComponent<Button>().onClick.AddListener(() =>
         {
             BuyItemObj.GetComponent<BuyItem>().Init(shopItems[(int)tool]);
             BuyItemObj.SetActive(true);
-        }); // ¹öÆ° Ãß°¡
+        }); // ë²„íŠ¼ ì´ë²¤íŠ¸ ì¶”ê°€
     }
 
     public void ShowShopInfo()
@@ -84,7 +84,7 @@ public class Shop : MonoBehaviour
 
     public void ShowMoney()
     {
-        showPlayerMoney.text = GameManager.instance.CurrentPlayer.Money + "¿ø";
+        showPlayerMoney.text = GameManager.instance.CurrentPlayer.Money + "ì›";
     }
 
     public void ShowItems()

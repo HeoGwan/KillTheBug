@@ -27,26 +27,26 @@ public class ShowToolDetail : MonoBehaviour
 
     public Image toolImage;
     
-    [Header("¡å µµ±¸ ¼Ó¼º Á¤º¸")]
+    [Header("ë„êµ¬ ì†ì„± ì •ë³´")]
     public TextMeshProUGUI toolName;
     public TextMeshProUGUI toolRateOfHit;
     public TextMeshProUGUI toolRadius;
     public TextMeshProUGUI toolSpeed;
     public TextMeshProUGUI toolDamage;
     
-    [Header("¡å °­È­ ¹öÆ°")]
+    [Header("ê°•í™” ë²„íŠ¼")]
     public Button RateButton;
     public Button RadiusButton;
     public Button SpeedButton;
     public Button DamageButton;
 
-    [Header("¡å °­È­ ±İ¾× Á¤º¸")]
+    [Header("ê°•í™” ê¸ˆì•¡ ì •ë³´")]
     public TextMeshProUGUI ratePriceText;
     public TextMeshProUGUI radiusPriceText;
     public TextMeshProUGUI speedPriceText;
     public TextMeshProUGUI damagePriceText;
 
-    [Header("¡å µµ±¸ Á¤º¸")]
+    [Header("ë„êµ¬ ì •ë³´")]
     [SerializeField] GameObject toolInfoObj;
     [SerializeField] TextMeshProUGUI toolInfo;
 
@@ -67,10 +67,10 @@ public class ShowToolDetail : MonoBehaviour
 
         // transform.GetChild(0) : Selected Tool
         // transform.GetChild(1) : Tool Info
-        // ÀÌ¹ÌÁö¸¦ ¹Ù²Ù·Á¸é transform.GetChild(0).GetChild(0)À¸·Î Á¢±ÙÇØ¾ß ÇÑ´Ù.
+        // ì´ë¯¸ì§€ë¥¼ ë°”ê¾¸ë ¤ë©´ transform.GetChild(0).GetChild(0)ìœ¼ë¡œ ì ‘ê·¼í•´ì•¼ í•œë‹¤.
         toolImage.sprite = sprite;
 
-        // µµ±¸ Á¤º¸
+        // ë„êµ¬ ì •ë³´
         toolName.text = selectToolScript.ToolName;
         toolInfo.text = selectToolScript.ToolInfo;
 
@@ -100,10 +100,10 @@ public class ShowToolDetail : MonoBehaviour
         price.SpeedPrice = GetPrice(selectToolScript.ToolSpeed);
         price.DamagePrice = GetPrice(selectToolScript.ToolDamage);
 
-        ratePriceText.text = price.RatePrice == -1 ? "°­È­ ºÒ°¡" : price.RatePrice + "¿ø";
-        radiusPriceText.text = price.RadiusPrice == -1 ? "°­È­ ºÒ°¡" : price.RadiusPrice + "¿ø";
-        speedPriceText.text = price.SpeedPrice == -1 ? "°­È­ ºÒ°¡" : price.SpeedPrice + "¿ø";
-        damagePriceText.text = price.DamagePrice == -1 ? "°­È­ ºÒ°¡" : price.DamagePrice + "¿ø";
+        ratePriceText.text = price.RatePrice == -1 ? "ê°•í™” ë¶ˆê°€" : price.RatePrice + "ì›";
+        radiusPriceText.text = price.RadiusPrice == -1 ? "ê°•í™” ë¶ˆê°€" : price.RadiusPrice + "ì›";
+        speedPriceText.text = price.SpeedPrice == -1 ? "ê°•í™” ë¶ˆê°€" : price.SpeedPrice + "ì›";
+        damagePriceText.text = price.DamagePrice == -1 ? "ê°•í™” ë¶ˆê°€" : price.DamagePrice + "ì›";
 
         return price;
     }

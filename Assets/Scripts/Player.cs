@@ -7,8 +7,8 @@ using UnityEngine.UI;
 using UnityEditor;
 
 /*
- * »ç¿ë Á¦ÇÑÀÖ´Â ¾ÆÀÌÅÛ »ç¿ë ÈÄ ´Ù¸¥ ¾ÆÀÌÅÛ ¾ò°í »ç¿ë ½Ã ¹ö±× ¹ß»ı
- * ÀÌº¥Æ® ¸®½º³Ê¸¦ Áö¿ìÁö ¾Ê¾Æ ¹ß»ıÇÑ ¹®Á¦
+ * ì‚¬ìš© ì œí•œìˆëŠ” ì•„ì´í…œ ì‚¬ìš© í›„ ë‹¤ë¥¸ ì•„ì´í…œ ì–»ê³  ì‚¬ìš© ì‹œ ë²„ê·¸ ë°œìƒ
+ * ì´ë²¤íŠ¸ ë¦¬ìŠ¤ë„ˆë¥¼ ì§€ìš°ì§€ ì•Šì•„ ë°œìƒí•œ ë¬¸ì œ
 */
 
 public class Player : MonoBehaviour
@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
 
     public void Init()
     {
-        // ÇÃ·¹ÀÌ¾î Á¤º¸ ÃÊ±âÈ­
+        // í”Œë ˆì´ì–´ ì •ë³´ ì´ˆê¸°í™”
         transform.position = Vector3.zero;
         hasTools.Clear();
         hasToolTypes.Clear();
@@ -92,7 +92,7 @@ public class Player : MonoBehaviour
         showToolsButton.GetComponent<ShowToolsButton>().Init();
         selectTool = null;
 
-        // °¡Áö°í ÀÖ´ø µµ±¸ »èÁ¦
+        // ê°€ì§€ê³  ìˆë˜ ë„êµ¬ ì‚­ì œ
         int hasToolsCount = toolListObj.transform.childCount;
         for (int i = 0; i < hasToolsCount; ++i)
         {
@@ -111,38 +111,38 @@ public class Player : MonoBehaviour
     
     public void BringTool()
     {
-        // toolManager¿¡°Ô¼­ µµ±¸¸¦ ¹Ş¾Æ¿À¸ç shopManager¿¡°Ô µµ±¸¸¦ ¹Ş¾Æ¿Â »ç½ÇÀ» ¾Ë·ÁÁÜ
+        // toolManagerì—ê²Œì„œ ë„êµ¬ë¥¼ ë°›ì•„ì˜¤ë©° shopManagerì—ê²Œ ë„êµ¬ë¥¼ ë°›ì•„ì˜¨ ì‚¬ì‹¤ì„ ì•Œë ¤ì¤Œ
         GetTool(toolIndex);
-        GameManager.instance.shopManager.UnLockTool(toolIndex); // shopManager¿¡°Ô µµ±¸°¡ ÀÖ´Ù°í ¾Ë·ÁÁÜ
+        GameManager.instance.shopManager.UnLockTool(toolIndex); // shopManagerì—ê²Œ ë„êµ¬ê°€ ìˆë‹¤ê³  ì•Œë ¤ì¤Œ
         SelectTool();
     }
 
     public GameObject GetTool(TOOL tool, GameObject toolPref=null)
     {
         GameObject toolObj = toolPref == null ? GameManager.instance.toolManager.GiveTool(tool) : toolPref;
-        // ¾î¶² µµ±¸ÀÎÁö Á¤º¸¸¦ Àü´Ş¹ŞÀº ÈÄ ÇØ´ç µµ±¸¸¦ ÀÎ½ºÅÏ½ºÈ­ ÇÏ´Â °úÁ¤
+        // ì–´ë–¤ ë„êµ¬ì¸ì§€ ì •ë³´ë¥¼ ì „ë‹¬ë°›ì€ í›„ í•´ë‹¹ ë„êµ¬ë¥¼ ì¸ìŠ¤í„´ìŠ¤í™” í•˜ëŠ” ê³¼ì •
         toolObj.transform.SetParent(toolListObj.transform);
 
-        // ÇØ´ç µµ±¸¸¦ ÇÃ·¹ÀÌ¾î°¡ °¡Áö°í ÀÖ´Ù´Â °ÍÀ» ¾Ë·ÁÁÜ
+        // í•´ë‹¹ ë„êµ¬ë¥¼ í”Œë ˆì´ì–´ê°€ ê°€ì§€ê³  ìˆë‹¤ëŠ” ê²ƒì„ ì•Œë ¤ì¤Œ
         toolObj.GetComponent<Tool>().HasPlayer();
         
-        // °­È­ÇÒ ¶§ ¾î¶² µµ±¸¸¦ °¡Áö°í ÀÖ´ÂÁö ¾Ë·ÁÁÜ
+        // ê°•í™”í•  ë•Œ ì–´ë–¤ ë„êµ¬ë¥¼ ê°€ì§€ê³  ìˆëŠ”ì§€ ì•Œë ¤ì¤Œ
         GameManager.instance.reinforceManager.AddTool(toolObj);
 
-        // ÇÃ·¹ÀÌ¾î°¡ °¡Áö°í ÀÖ´Â µµ±¸¸¦ ÀúÀåÇÑ´Ù.
+        // í”Œë ˆì´ì–´ê°€ ê°€ì§€ê³  ìˆëŠ” ë„êµ¬ë¥¼ ì €ì¥í•œë‹¤.
         hasTools.Add(toolObj);
         hasToolTypes.Add(tool);
 
-        // ÇÃ·¹ÀÌ¾î°¡ ¼±ÅÃÇÒ ¼ö ÀÖµµ·Ï ¹öÆ°À» Ãß°¡ÇÑ´Ù.
+        // í”Œë ˆì´ì–´ê°€ ì„ íƒí•  ìˆ˜ ìˆë„ë¡ ë²„íŠ¼ì„ ì¶”ê°€í•œë‹¤.
         GameObject toolButton = GameManager.instance.prefabManager.GetSelectTool();
         toolButton.transform.SetParent(showSelectTools.transform);
         toolButton.transform.localScale = Vector3.one;
 
-        // ¹öÆ° ÀÌ¹ÌÁö ¼öÁ¤
+        // ë²„íŠ¼ ì´ë¯¸ì§€ ìˆ˜ì •
         toolButton.transform.GetChild(0).GetComponent<Image>().sprite =
             toolObj.GetComponent<Tool>().ToolImage;
 
-        // ¹öÆ° Å¬¸¯ ½Ã ÇØ´ç µµ±¸·Î º¯°æ
+        // ë²„íŠ¼ í´ë¦­ ì‹œ í•´ë‹¹ ë„êµ¬ë¡œ ë³€ê²½
         toolButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             if (GameManager.instance.GameState == GAME_STATE.RUNNING) { SelectTool(tool); }
@@ -193,12 +193,12 @@ public class Player : MonoBehaviour
         curTool.SetTool();
         selectTool.SetActive(true);
 
-        // Hit ¹öÆ°ÀÇ µµ±¸ º¯°æ
+        // Hit ë²„íŠ¼ì˜ ë„êµ¬ ë³€ê²½
         ChangeTool();
 
-        // ¼±ÅÃÇÑ µµ±¸ÀÇ Hit ÁÂÇ¥¸¦ º¸¿©ÁÜ
+        // ì„ íƒí•œ ë„êµ¬ì˜ Hit ì¢Œí‘œë¥¼ ë³´ì—¬ì¤Œ
         hitPos.SetCurTool(selectTool);
-        // µµ±¸°¡ º¯°æµÇ¾ú´Ù´Â °ÍÀ» ¾Ë·ÁÁÜ
+        // ë„êµ¬ê°€ ë³€ê²½ë˜ì—ˆë‹¤ëŠ” ê²ƒì„ ì•Œë ¤ì¤Œ
         hitPos.ToolChange(curTool);
     }
     
@@ -221,12 +221,12 @@ public class Player : MonoBehaviour
         curTool.SetTool();
         selectTool.SetActive(true);
 
-        // Hit ¹öÆ°ÀÇ µµ±¸ º¯°æ
+        // Hit ë²„íŠ¼ì˜ ë„êµ¬ ë³€ê²½
         ChangeTool();
 
-        // ¼±ÅÃÇÑ µµ±¸ÀÇ Hit ÁÂÇ¥¸¦ º¸¿©ÁÜ
+        // ì„ íƒí•œ ë„êµ¬ì˜ Hit ì¢Œí‘œë¥¼ ë³´ì—¬ì¤Œ
         hitPos.SetCurTool(selectTool);
-        // µµ±¸°¡ º¯°æµÇ¾ú´Ù´Â °ÍÀ» ¾Ë·ÁÁÜ
+        // ë„êµ¬ê°€ ë³€ê²½ë˜ì—ˆë‹¤ëŠ” ê²ƒì„ ì•Œë ¤ì¤Œ
         hitPos.ToolChange(curTool);
     }
     
@@ -251,12 +251,12 @@ public class Player : MonoBehaviour
         curTool.SetTool();
         selectTool.SetActive(true);
 
-        // Hit ¹öÆ°ÀÇ µµ±¸ º¯°æ
+        // Hit ë²„íŠ¼ì˜ ë„êµ¬ ë³€ê²½
         ChangeTool();
 
-        // ¼±ÅÃÇÑ µµ±¸ÀÇ Hit ÁÂÇ¥¸¦ º¸¿©ÁÜ
+        // ì„ íƒí•œ ë„êµ¬ì˜ Hit ì¢Œí‘œë¥¼ ë³´ì—¬ì¤Œ
         hitPos.SetCurTool(selectTool);
-        // µµ±¸°¡ º¯°æµÇ¾ú´Ù´Â °ÍÀ» ¾Ë·ÁÁÜ
+        // ë„êµ¬ê°€ ë³€ê²½ë˜ì—ˆë‹¤ëŠ” ê²ƒì„ ì•Œë ¤ì¤Œ
         hitPos.ToolChange(curTool);
     }
 
@@ -282,7 +282,7 @@ public class Player : MonoBehaviour
     
     public void CantUse(GameObject toolObj)
     {
-        // µµ±¸¸¦ ´õÀÌ»ó »ç¿ëÇÒ ¼ö ¾øÀ¸¹Ç·Î ÇØ´ç µµ±¸¸¦ °¡Áö°í ÀÖÁö ¾ÊÀº »óÅÂ·Î ¸¸µé°í »óÁ¡¿¡ ÀÌ¸¦ ¾Ë·ÁÁØ´Ù
+        // ë„êµ¬ë¥¼ ë”ì´ìƒ ì‚¬ìš©í•  ìˆ˜ ì—†ìœ¼ë¯€ë¡œ í•´ë‹¹ ë„êµ¬ë¥¼ ê°€ì§€ê³  ìˆì§€ ì•Šì€ ìƒíƒœë¡œ ë§Œë“¤ê³  ìƒì ì— ì´ë¥¼ ì•Œë ¤ì¤€ë‹¤
         TOOL tool = toolObj.GetComponent<Tool>().ToolType;
         Vector3 pos = toolObj.transform.position;
         int index = hasToolTypes.IndexOf(tool);
@@ -290,19 +290,19 @@ public class Player : MonoBehaviour
         print("index: " + index);
 #endif
 
-        // °¡Áö°í ÀÖ´Â Á¤º¸¿¡¼­ »èÁ¦
+        // ê°€ì§€ê³  ìˆëŠ” ì •ë³´ì—ì„œ ì‚­ì œ
         hasToolTypes.Remove(tool);
         hasTools.RemoveAt(index);
 
-        // ÇöÀç °¡Áö°í ÀÖ´Â µµ±¸ÀÇ ¿ÀºêÁ§Æ® »èÁ¦
+        // í˜„ì¬ ê°€ì§€ê³  ìˆëŠ” ë„êµ¬ì˜ ì˜¤ë¸Œì íŠ¸ ì‚­ì œ
         GameManager.instance.toolManager.ReturnTool(toolListObj.transform.GetChild(index).gameObject);
 
-        // µµ±¸ ¼±ÅÃ ¹öÆ°À» Áö¿ì¸é¼­ Ãß°¡µÈ ÀÌº¥Æ® ¸®½º³Ê¸¦ Áö¿öÁØ´Ù.
+        // ë„êµ¬ ì„ íƒ ë²„íŠ¼ì„ ì§€ìš°ë©´ì„œ ì¶”ê°€ëœ ì´ë²¤íŠ¸ ë¦¬ìŠ¤ë„ˆë¥¼ ì§€ì›Œì¤€ë‹¤.
         GameObject toolButton = showSelectTools.transform.GetChild(index).gameObject;
         toolButton.GetComponent<Button>().onClick.RemoveAllListeners();
         GameManager.instance.prefabManager.PutBackObj(toolButton);
 
-        // »óÁ¡°ú °­È­ ¸Å´ÏÀú¿¡°Ô µµ±¸¸¦ »ç¿ëÇÒ ¼ö ¾ø´Ù´Â °ÍÀ» ¾Ë¸²
+        // ìƒì ê³¼ ê°•í™” ë§¤ë‹ˆì €ì—ê²Œ ë„êµ¬ë¥¼ ì‚¬ìš©í•  ìˆ˜ ì—†ë‹¤ëŠ” ê²ƒì„ ì•Œë¦¼
         GameManager.instance.shopManager.LockTool(tool);
         GameManager.instance.reinforceManager.RemoveTool(toolObj);
 

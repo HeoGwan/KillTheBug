@@ -6,9 +6,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 /*
- * ¹ú·¹µéÀÇ ÀÌµ¿¼Óµµ°¡ ´À·ÁÁö´Â ¼³Ä¡±â
- * »ç¿ëÇÒ ¼ö ÀÖ´Â °³¼ö°¡ Á¤ÇØÁ® ÀÖÀ¸¸ç »ç¿ë °³¼ö¸¦ ´Ù »ç¿ëÇÏ¸é
- * ´Ù½Ã »óÁ¡¿¡¼­ ±¸¸ÅÇØ¾ß ÇÑ´Ù
+ * ë²Œë ˆë“¤ì˜ ì´ë™ì†ë„ê°€ ëŠë ¤ì§€ëŠ” ì„¤ì¹˜ê¸°
+ * ì‚¬ìš©í•  ìˆ˜ ìˆëŠ” ê°œìˆ˜ê°€ ì •í•´ì ¸ ìˆìœ¼ë©° ì‚¬ìš© ê°œìˆ˜ë¥¼ ë‹¤ ì‚¬ìš©í•˜ë©´
+ * ë‹¤ì‹œ ìƒì ì—ì„œ êµ¬ë§¤í•´ì•¼ í•œë‹¤
 */
 
 public class Trap : Tool
@@ -16,7 +16,7 @@ public class Trap : Tool
     [SerializeField] private float stopDuration;
     [SerializeField] private Sprite hitObjImage;
 
-    [Header("¡å »ç¿ë·® Á¤º¸")]
+    [Header("ì‚¬ìš©ëŸ‰ ì •ë³´")]
     [SerializeField] private int maxCount;
     [SerializeField] private GameObject showUseCanvas;
     [SerializeField] private TextMeshProUGUI showUseText;
@@ -34,7 +34,7 @@ public class Trap : Tool
 
         waitCantDelay = new WaitForSeconds(0.2f);
 
-        // ³²Àº »ç¿ë·® ¾Ë·ÁÁÖ´Â ÅØ½ºÆ® ÃÊ±âÈ­
+        // ë‚¨ì€ ì‚¬ìš©ëŸ‰ ì•Œë ¤ì£¼ëŠ” í…ìŠ¤íŠ¸ ì´ˆê¸°í™”
         showUseCanvas.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
         showUseCanvas.GetComponent<Canvas>().worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         showMaxUseText.text = "/ " + maxCount;
@@ -56,35 +56,35 @@ public class Trap : Tool
     {
         if (!canHit) return;
 
-        // ¶§¸° Àå¼Ò Ç¥½Ã ¿ÀºêÁ§Æ® »ı¼º
+        // ë•Œë¦° ì¥ì†Œ í‘œì‹œ ì˜¤ë¸Œì íŠ¸ ìƒì„±
         GameObject showHitObj = GameManager.instance.prefabManager.GetHit(HIT_OBJ_TYPE.SHOW_HIT);
         HitObjScript showHit = showHitObj.GetComponent<HitObjScript>();
-        // ¹ú·¹ Àâ¾Ò´ÂÁö È®ÀÎÇÏ´Â ¿ÀºêÁ§Æ® »ı¼º
+        // ë²Œë ˆ ì¡ì•˜ëŠ”ì§€ í™•ì¸í•˜ëŠ” ì˜¤ë¸Œì íŠ¸ ìƒì„±
         GameObject checkHitObj = GameManager.instance.prefabManager.GetHit(HIT_OBJ_TYPE.CHECK_HIT);
         HitCheckScript checkHit = checkHitObj.GetComponent<HitCheckScript>();
 
-        // ¿ÀºêÁ§Æ® ¼³Á¤ º¯°æ
+        // ì˜¤ë¸Œì íŠ¸ ì„¤ì • ë³€ê²½
         showHit.ChangeInfo(radius, stopDuration);
         checkHit.ChangeInfo(radius, damage, tool, stopDuration, 0, false);
 
         showHit.ChangeImage(hitObjImage);
         checkHit.ChangeImage(hitObjImage);
 
-        // µµ±¸ À§Ä¡·Î ¿ÀºêÁ§Æ® ÀÌµ¿
+        // ë„êµ¬ ìœ„ì¹˜ë¡œ ì˜¤ë¸Œì íŠ¸ ì´ë™
         showHit.Show(transform.position);
         checkHit.Show(transform.position);
 
-        // ¶§¸®±â ÄğÅ¸ÀÓ
+        // ë•Œë¦¬ê¸° ì¿¨íƒ€ì„
         canHit = false;
         StartCoroutine(HitDelay());
 
-        // ¶§¸®´Â ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
+        // ë•Œë¦¬ëŠ” ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ
         GameManager.instance.CurrentPlayer.CurrentHitPos.GetComponent<ShowHitPos>().PlayHitAnimation();
 
-        // ¶§¸®´Â ¼Ò¸® Àç»ı
+        // ë•Œë¦¬ëŠ” ì†Œë¦¬ ì¬ìƒ
         //GameManager.instance.soundManager.EffectPlay(tool);
 
-        // ÇÃ·¹ÀÌ¾î¿¡°Ô ´õÀÌ»ó »ç¿ëÇÒ ¼ö ¾øÀ½À» ¾Ë·ÁÁÜ
+        // í”Œë ˆì´ì–´ì—ê²Œ ë”ì´ìƒ ì‚¬ìš©í•  ìˆ˜ ì—†ìŒì„ ì•Œë ¤ì¤Œ
         if (count >= maxCount)
         {
             StartCoroutine(CantUse());

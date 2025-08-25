@@ -32,7 +32,7 @@ public class InputManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                     if (firstTouch.position.x < Screen.width / 2)
                     {
 #if UNITY_EDITOR
-                        print("ÅÍÄ¡ ´Ù¿î");
+                        print("í„°ì¹˜ ë‹¤ìš´");
 #endif
                         joyStickObj.SetActive(true);
                         joyStick.OnDown(firstTouch.position);
@@ -43,7 +43,7 @@ public class InputManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                     break;
                 case TouchPhase.Ended:
 #if UNITY_EDITOR
-                    print("ÅÍÄ¡ ¾÷");
+                    print("í„°ì¹˜ ì—…");
 #endif
                     joyStickObj.SetActive(false);
                     joyStick.OnUp();
@@ -55,7 +55,7 @@ public class InputManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     public void OnPointerUp(PointerEventData eventData)
     {
 #if UNITY_EDITOR
-        print("ÅÍÄ¡ ¾÷");
+        print("í„°ì¹˜ ì—…");
 #endif
         joyStickObj.SetActive(false);
         joyStick.OnUp();
@@ -64,7 +64,7 @@ public class InputManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     public void OnPointerDown(PointerEventData eventData)
     {
 #if UNITY_EDITOR
-        print("ÅÍÄ¡ ´Ù¿î");
+        print("í„°ì¹˜ ë‹¤ìš´");
 #endif
         joyStickObj.SetActive(true);
         joyStick.OnDown(eventData.position);

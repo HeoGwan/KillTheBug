@@ -27,7 +27,7 @@ public class ShowHitPos : MonoBehaviour
 
     public void SetCurTool(GameObject tool)
     {
-        // ªÁ¿Ã¡Ó ¡∂¿˝
+        // ÏÇ¨Ïù¥Ï¶à Ï°∞Ï†à
         transform.localScale = tool.transform.localScale;
     }
 

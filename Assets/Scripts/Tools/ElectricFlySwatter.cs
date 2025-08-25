@@ -5,17 +5,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /*
- * Àü±â ÆÄ¸®Ã¤ : Hit ¹öÆ°À» ´©¸¥ ½Ã°£µ¿¾È °ø°İÀ» ÀÌ¾î°£´Ù.
- * °ÔÀÌÁö¸¦ ÅëÇØ ³²Àº °ø°İ ½Ã°£À» º¸¿©ÁØ´Ù.
- * °ø°İÇÏÁö ¾ÊÀ» ½Ã °ø°İ ½Ã°£ÀÌ Ã¤¿öÁø´Ù.
+ * ì „ê¸° íŒŒë¦¬ì±„ : Hit ë²„íŠ¼ì„ ëˆ„ë¥¸ ì‹œê°„ë™ì•ˆ ê³µê²©ì„ ì´ì–´ê°„ë‹¤.
+ * ê²Œì´ì§€ë¥¼ í†µí•´ ë‚¨ì€ ê³µê²© ì‹œê°„ì„ ë³´ì—¬ì¤€ë‹¤.
+ * ê³µê²©í•˜ì§€ ì•Šì„ ì‹œ ê³µê²© ì‹œê°„ì´ ì±„ì›Œì§„ë‹¤.
 */
 
 public class ElectricFlySwatter : Tool
 {
     float attackTime = 0;
     float attackDurationTime = 0;
-    [SerializeField] float maxAttackTime; // ÃÖ´ë·Î ´©¸£°í ÀÖÀ» ¼ö ÀÖ´Â ½Ã°£
-    [SerializeField] float attackDuration; // ´©¸£´Â µ¿¾ÈÀÇ °ø°İ ÁÖ±â
+    [SerializeField] float maxAttackTime; // ìµœëŒ€ë¡œ ëˆ„ë¥´ê³  ìˆì„ ìˆ˜ ìˆëŠ” ì‹œê°„
+    [SerializeField] float attackDuration; // ëˆ„ë¥´ëŠ” ë™ì•ˆì˜ ê³µê²© ì£¼ê¸°
 
     [SerializeField] GameObject gaugeCanvas;
     [SerializeField] float yOffset;
@@ -60,14 +60,14 @@ public class ElectricFlySwatter : Tool
 
         if (attackTime >= maxAttackTime)
         {
-            // °ø°İ ÁßÁö
+            // ê³µê²© ì¤‘ì§€
             StopAttack();
         }
 
         if (attackDurationTime >= attackDuration)
         {
             attackDurationTime = 0;
-            // Àü±â °ø°İ
+            // ì „ê¸° ê³µê²©
             ElectricAttack();
             GameManager.instance.soundManager.EffectPlay(tool);
         }
@@ -80,7 +80,7 @@ public class ElectricFlySwatter : Tool
 
     void StopAttack()
     {
-        // ¶§¸®±â ÄğÅ¸ÀÓ
+        // ë•Œë¦¬ê¸° ì¿¨íƒ€ì„
         canHit = false;
         StartCoroutine(HitDelay());
         GameManager.instance.CurrentPlayer.CurrentHitPos.GetComponent<ShowHitPos>().StopHitAnimation();
@@ -92,12 +92,12 @@ public class ElectricFlySwatter : Tool
 
     void ElectricAttack()
     {
-        // ¹ú·¹ Àâ¾Ò´ÂÁö È®ÀÎÇÏ´Â ¿ÀºêÁ§Æ®
+        // ë²Œë ˆ ì¡ì•˜ëŠ”ì§€ í™•ì¸í•˜ëŠ” ì˜¤ë¸Œì íŠ¸
         GameObject checkHitObj = GameManager.instance.prefabManager.GetHit(HIT_OBJ_TYPE.CHECK_HIT);
         checkHitObj.GetComponent<HitCheckScript>().ChangeInfo(radius, damage, tool, attackDuration);
         checkHitObj.GetComponent<HitCheckScript>().Show(transform.position);
 
-        // ¶§¸®´Â ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
+        // ë•Œë¦¬ëŠ” ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ
         GameManager.instance.CurrentPlayer.CurrentHitPos.GetComponent<ShowHitPos>().PlayHitAnimation(tool, 0.1f);
     }
 

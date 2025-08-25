@@ -20,7 +20,7 @@ public class DebugMode : MonoBehaviour
     {
         if (isOn)
         {
-            // µğ¹ö±× ¸ğµå ON (FPS º¸ÀÌ±â)
+            // ë””ë²„ê·¸ ëª¨ë“œ ON (FPS ë³´ì´ê¸°)
             foreach (var obj in DebugObjects)
             {
                 obj.SetActive(true);
@@ -28,7 +28,7 @@ public class DebugMode : MonoBehaviour
         }
         else
         {
-            // µğ¹ö±× ¸ğµå OFF (FPS ¾È º¸ÀÌ±â)
+            // ë””ë²„ê·¸ ëª¨ë“œ OFF (FPS ì•ˆ ë³´ì´ê¸°)
             foreach (var obj in DebugObjects)
             {
                 obj.SetActive(false);

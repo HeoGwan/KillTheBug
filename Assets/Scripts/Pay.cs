@@ -19,9 +19,9 @@ public class Pay : MonoBehaviour
 
     public void ShowPayInfo()
     {
-        // ¸ğÀº µ·À» Ãâ·ÂÇÑ´Ù.
-        // ÇÃ·¹ÀÌ¾î°¡ °¡Áö°í ÀÖ´Â µ·À» ºÒ·¯¿Í ÇöÀç ÀÜ¾×À» Ãâ·ÂÇÑ´Ù.
-        showPayMoney.text = money + "¿ø";
-        showPlayerMoney.text = GameManager.instance.CurrentPlayer.Money + "¿ø";
+        // ëª¨ì€ ëˆì„ ì¶œë ¥í•œë‹¤.
+        // í”Œë ˆì´ì–´ê°€ ê°€ì§€ê³  ìˆëŠ” ëˆì„ ë¶ˆëŸ¬ì™€ í˜„ì¬ ì”ì•¡ì„ ì¶œë ¥í•œë‹¤.
+        showPayMoney.text = money + "ì›";
+        showPlayerMoney.text = GameManager.instance.CurrentPlayer.Money + "ì›";
     }
 }

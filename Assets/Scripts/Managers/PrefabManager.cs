@@ -7,13 +7,13 @@ using UnityEngine.UI;
 
 public class PrefabManager : MonoBehaviour
 {
-    // ¹ú·¹, ÇÃ·¹ÀÌ¾î
+    // ë²Œë ˆ, í”Œë ˆì´ì–´
     [SerializeField] private GameObject[] bugPrefabs;
     [SerializeField] private GameObject[] hitPrefabs;
     [SerializeField] private GameObject playerHasTool;
 
     [Space(20)]
-    [Header("¡å Reinforce and Shop")]
+    [Header("Reinforce and Shop")]
     [Header("Reinforce")]
     [SerializeField] private GameObject showPlayerHasTool;
     [Header("Shop")]
@@ -22,17 +22,17 @@ public class PrefabManager : MonoBehaviour
     [SerializeField] private Sprite lockImage;
 
     [Space(20)]
-    [Header("¡å HP Bar")]
+    [Header("HP Bar")]
     [SerializeField] private GameObject hpImagePrefab;
     [SerializeField] private GameObject hpBackgroundImagePrefab;
 
     [Space(20)]
-    [Header("¡å Tool Gauge")]
+    [Header("Tool Gauge")]
     [SerializeField] private GameObject toolGaugeImagePrefab;
     [SerializeField] private GameObject toolGaugeBackgroundImagePrefab;
 
     [Space(20)]
-    [Header("¡å Score")]
+    [Header("Score")]
     [SerializeField] private GameObject scorePrefab;
 
     private List<GameObject> objs;
@@ -83,7 +83,7 @@ public class PrefabManager : MonoBehaviour
         InitializeSelectTool(6);
     }
 
-    // Init ÇÔ¼ö
+    // Init í•¨ìˆ˜
     private void InitializeBug(int count)
     {
         for (int type = 0; type < bugPrefabs.Length; ++type)
@@ -151,12 +151,12 @@ public class PrefabManager : MonoBehaviour
     {
         for (int index = 0; index < count; ++index)
         {
-            // »óÁ¡ ¾ÆÀÌÅÛ º¸¿©ÁÖ´Â ¿ÀºêÁ§Æ® Ãß°¡
+            // ìƒì  ì•„ì´í…œ ë³´ì—¬ì£¼ëŠ” ì˜¤ë¸Œì íŠ¸ ì¶”ê°€
             GameObject newShopItem = Instantiate(shopItemPrefab, transform);
             newShopItem.SetActive(false);
             shopItemPool.Add(newShopItem);
 
-            // ÀÚ¹°¼è ÀÌ¹ÌÁö¸¦ °¡Áø ¿ÀºêÁ§Æ® Ãß°¡
+            // ìë¬¼ì‡  ì´ë¯¸ì§€ë¥¼ ê°€ì§„ ì˜¤ë¸Œì íŠ¸ ì¶”ê°€
             GameObject newLock = Instantiate(lockPrefab, transform);
             newLock.transform.SetParent(newShopItem.transform);
             newLock.GetComponent<Image>().sprite = lockImage;
@@ -187,27 +187,27 @@ public class PrefabManager : MonoBehaviour
     }
 
 
-    // Get ÇÔ¼ö
+    // Get í•¨ìˆ˜
     public Bug GetBug(BUG_TYPE type)
     {
         Bug selectBug = null;
 
-        // ¼±ÅÃÇÑ Ç®ÀÇ ºñÈ°¼ºÈ­ µÈ °ÔÀÓ¿ÀºêÁ§Æ® Á¢±Ù
+        // ì„ íƒí•œ í’€ì˜ ë¹„í™œì„±í™” ëœ ê²Œì„ì˜¤ë¸Œì íŠ¸ ì ‘ê·¼
         foreach(Bug bug in bugPool[(int)type])
         {
             if (!bug.gameObject.activeSelf)
             {
-                // ¹ß°ßÇÏ¸é selectBug¿¡ ÇÒ´ç
+                // ë°œê²¬í•˜ë©´ selectBugì— í• ë‹¹
                 selectBug = bug;
                 //selectBug.SetActive(true);
                 break;
             }
         }
 
-        // ¸ø Ã£¾ÒÀ¸¸é
+        // ëª» ì°¾ì•˜ìœ¼ë©´
         if (!selectBug)
         {
-            // »õ·Ó°Ô »ı¼ºÇÏ°í selectBug¿¡ ÇÒ´ç
+            // ìƒˆë¡­ê²Œ ìƒì„±í•˜ê³  selectBugì— í• ë‹¹
             selectBug = Instantiate(bugPrefabs[(int)type], transform).GetComponent<Bug>();
             bugPool[(int)type].Add(selectBug);
         }
@@ -219,22 +219,22 @@ public class PrefabManager : MonoBehaviour
     {
         GameObject selectHit = null;
 
-        // ¼±ÅÃÇÑ Ç®ÀÇ ºñÈ°¼ºÈ­ µÈ °ÔÀÓ¿ÀºêÁ§Æ® Á¢±Ù
+        // ì„ íƒí•œ í’€ì˜ ë¹„í™œì„±í™” ëœ ê²Œì„ì˜¤ë¸Œì íŠ¸ ì ‘ê·¼
         foreach(GameObject hit in hitPool[(int)type])
         {
             if (!hit.activeSelf)
             {
-                // ¹ß°ßÇÏ¸é selectBug¿¡ ÇÒ´ç
+                // ë°œê²¬í•˜ë©´ selectBugì— í• ë‹¹
                 selectHit = hit;
                 selectHit.SetActive(true);
                 break;
             }
         }
 
-        // ¸ø Ã£¾ÒÀ¸¸é
+        // ëª» ì°¾ì•˜ìœ¼ë©´
         if (!selectHit)
         {
-            // »õ·Ó°Ô »ı¼ºÇÏ°í selectBug¿¡ ÇÒ´ç
+            // ìƒˆë¡­ê²Œ ìƒì„±í•˜ê³  selectBugì— í• ë‹¹
             selectHit = Instantiate(hitPrefabs[(int)type], transform);
             hitPool[(int)type].Add(selectHit);
         }
@@ -246,22 +246,22 @@ public class PrefabManager : MonoBehaviour
     {
         GameObject selectScore = null;
 
-        // ¼±ÅÃÇÑ Ç®ÀÇ ºñÈ°¼ºÈ­ µÈ °ÔÀÓ¿ÀºêÁ§Æ® Á¢±Ù
+        // ì„ íƒí•œ í’€ì˜ ë¹„í™œì„±í™” ëœ ê²Œì„ì˜¤ë¸Œì íŠ¸ ì ‘ê·¼
         foreach (GameObject score in scorePool)
         {
             if (!score.activeSelf)
             {
-                // ¹ß°ßÇÏ¸é selectBug¿¡ ÇÒ´ç
+                // ë°œê²¬í•˜ë©´ selectBugì— í• ë‹¹
                 selectScore = score;
                 selectScore.SetActive(true);
                 break;
             }
         }
 
-        // ¸ø Ã£¾ÒÀ¸¸é
+        // ëª» ì°¾ì•˜ìœ¼ë©´
         if (!selectScore)
         {
-            // »õ·Ó°Ô »ı¼ºÇÏ°í selectBug¿¡ ÇÒ´ç
+            // ìƒˆë¡­ê²Œ ìƒì„±í•˜ê³  selectBugì— í• ë‹¹
             selectScore = Instantiate(scorePrefab, transform);
             scorePool.Add(selectScore);
         }
@@ -309,13 +309,13 @@ public class PrefabManager : MonoBehaviour
 
         if (!selectShopItem)
         {
-            // Á¶°Ç¿¡ ¸Â´Â ¿ÀºêÁ§Æ® ¸ø Ã£¾ÒÀ» ½Ã
-            // »óÁ¡ ¾ÆÀÌÅÛ º¸¿©ÁÖ´Â ¿ÀºêÁ§Æ® Ãß°¡
+            // ì¡°ê±´ì— ë§ëŠ” ì˜¤ë¸Œì íŠ¸ ëª» ì°¾ì•˜ì„ ì‹œ
+            // ìƒì  ì•„ì´í…œ ë³´ì—¬ì£¼ëŠ” ì˜¤ë¸Œì íŠ¸ ì¶”ê°€
             selectShopItem = Instantiate(shopItemPrefab, transform);
             selectShopItem.GetComponent<ShopItem>().SetItemInfo(shopItemInfo);
             shopItemPool.Add(selectShopItem);
 
-            // ÀÚ¹°¼è ÀÌ¹ÌÁö¸¦ °¡Áø ¿ÀºêÁ§Æ® Ãß°¡
+            // ìë¬¼ì‡  ì´ë¯¸ì§€ë¥¼ ê°€ì§„ ì˜¤ë¸Œì íŠ¸ ì¶”ê°€
             GameObject newLock = Instantiate(lockPrefab, transform);
             newLock.transform.SetParent(selectShopItem.transform);
             lockPool.Add(newLock);
@@ -358,7 +358,7 @@ public class PrefabManager : MonoBehaviour
     {
         Stack<Bug> selectBug = new Stack<Bug>();
 
-        // È°¼ºÈ­ µÈ ¹ú·¹µéÀ» °¡Á®¿È
+        // í™œì„±í™” ëœ ë²Œë ˆë“¤ì„ ê°€ì ¸ì˜´
         foreach (Bug bug in bugPool[(int)bugType])
         {
             if (bug.gameObject.activeSelf)

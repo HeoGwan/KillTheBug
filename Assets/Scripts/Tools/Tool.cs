@@ -6,9 +6,9 @@ using UnityEditor;
 
 public class Tool : MonoBehaviour
 {
-    #region µµ±¸ ¼³Á¤
-    // ¿¬»ç ¼Óµµ
-    // ¸Å¿ì ´À¸², ´À¸², º¸Åë, ºü¸§, ¸Å¿ì ºü¸§
+    #region ë„êµ¬ ì„¤ì •
+    // ì—°ì‚¬ ì†ë„
+    // ë§¤ìš° ëŠë¦¼, ëŠë¦¼, ë³´í†µ, ë¹ ë¦„, ë§¤ìš° ë¹ ë¦„
     //     1,     0.7,  0.5,  0.3,     0.1
     [SerializeField] protected float hitDelay = .5f;
     public float Delay { get { return hitDelay; } }
@@ -22,8 +22,8 @@ public class Tool : MonoBehaviour
     [SerializeField] private int ratePrice;
     public int RatePrice { get { return ratePrice; } }
 
-    // ¹üÀ§
-    // ÀÛÀ½, º¸Åë, Å­
+    // ë²”ìœ„
+    // ì‘ìŒ, ë³´í†µ, í¼
     //  0.5,  1,   1.5
     [SerializeField] protected float radius = 1f;
     public float Radius { get { return radius; } }
@@ -37,8 +37,8 @@ public class Tool : MonoBehaviour
     [SerializeField] private int radiusPrice;
     public int RadiusPrice { get { return radiusPrice; } }
 
-    // ÀÌµ¿ ¼Óµµ
-    // ¸Å¿ì ´À¸², ´À¸², º¸Åë, ºü¸§, ¸Å¿ì ºü¸§
+    // ì´ë™ ì†ë„
+    // ë§¤ìš° ëŠë¦¼, ëŠë¦¼, ë³´í†µ, ë¹ ë¦„, ë§¤ìš° ë¹ ë¦„
     //     0.5,    0.7,   1,   1.3,    1.5
     [SerializeField] protected float speed = 10f;
     public float Speed { get { return speed; } }
@@ -60,18 +60,18 @@ public class Tool : MonoBehaviour
         get { return toolDamage; }
         set { toolDamage = value; }
     }
-    // µ¥¹ÌÁö ÃÖ´ë ´Ü°è
+    // ë°ë¯¸ì§€ ìµœëŒ€ ë‹¨ê³„
     [SerializeField] private int maxDamageLevel;
 
     [SerializeField] private int damagePrice;
     public int DamagePrice { get { return damagePrice; } }
 
 
-    // ¸Å¿ì ´À¸², ´À¸², º¸Åë, ºü¸§, ¸Å¿ì ºü¸§
+    // ë§¤ìš° ëŠë¦¼, ëŠë¦¼, ë³´í†µ, ë¹ ë¦„, ë§¤ìš° ë¹ ë¦„
     private float[] rates = { 1f, 0.7f, 0.5f, 0.3f, 0.1f };
-    // ÀÛÀ½, º¸Åë, Å­
+    // ì‘ìŒ, ë³´í†µ, í¼
     private float[] radiuses = { 0.8f, 1.2f, 1.6f };
-    // ¸Å¿ì ´À¸², ´À¸², º¸Åë, ºü¸§, ¸Å¿ì ºü¸§
+    // ë§¤ìš° ëŠë¦¼, ëŠë¦¼, ë³´í†µ, ë¹ ë¦„, ë§¤ìš° ë¹ ë¦„
     private float[] speeds = { 3f, 5f, 8f, 10f, 12f };
 
 
@@ -103,21 +103,21 @@ public class Tool : MonoBehaviour
     private WaitForSeconds waitHitDelay;
 
 
-    #region ¼Ó¼º getter, setter
+    #region ì†ì„± getter, setter
     public string GetRateText()
     {
         switch (toolRate)
         {
             case TOOL_RATE.SUPER_SLOW:
-                return "¸Å¿ì ´À¸²";
+                return "ë§¤ìš° ëŠë¦¼";
             case TOOL_RATE.SLOW:
-                return "´À¸²";
+                return "ëŠë¦¼";
             case TOOL_RATE.NORMAL:
-                return "º¸Åë";
+                return "ë³´í†µ";
             case TOOL_RATE.FAST:
-                return "ºü¸§";
+                return "ë¹ ë¦„";
             case TOOL_RATE.SUPER_FAST:
-                return "¸Å¿ì ºü¸§";
+                return "ë§¤ìš° ë¹ ë¦„";
             default:
                 return "";
         }
@@ -128,11 +128,11 @@ public class Tool : MonoBehaviour
         switch (toolRadius)
         {
             case TOOL_RADIUS.SMALL:
-                return "ÀÛÀ½";
+                return "ì‘ìŒ";
             case TOOL_RADIUS.MEDIUM:
-                return "º¸Åë";
+                return "ë³´í†µ";
             case TOOL_RADIUS.LARGE:
-                return "Å­";
+                return "í¼";
             default:
                 return "";
         }
@@ -143,15 +143,15 @@ public class Tool : MonoBehaviour
         switch (toolSpeed)
         {
             case TOOL_SPEED.SUPER_SLOW:
-                return "¸Å¿ì ´À¸²";
+                return "ë§¤ìš° ëŠë¦¼";
             case TOOL_SPEED.SLOW:
-                return "´À¸²";
+                return "ëŠë¦¼";
             case TOOL_SPEED.NORMAL:
-                return "º¸Åë";
+                return "ë³´í†µ";
             case TOOL_SPEED.FAST:
-                return "ºü¸§";
+                return "ë¹ ë¦„";
             case TOOL_SPEED.SUPER_FAST:
-                return "¸Å¿ì ºü¸§";
+                return "ë§¤ìš° ë¹ ë¦„";
             default:
                 return "";
         }
@@ -162,15 +162,15 @@ public class Tool : MonoBehaviour
         switch (toolDamage)
         {
             case TOOL_DAMAGE.VERY_WEAK:
-                return "¸Å¿ì ¾àÇÔ";
+                return "ë§¤ìš° ì•½í•¨";
             case TOOL_DAMAGE.WEAK:
-                return "¾àÇÔ";
+                return "ì•½í•¨";
             case TOOL_DAMAGE.NORMAL:
-                return "º¸Åë";
+                return "ë³´í†µ";
             case TOOL_DAMAGE.STRONG:
-                return "°­ÇÔ";
+                return "ê°•í•¨";
             case TOOL_DAMAGE.VERY_STRONG:
-                return "¸Å¿ì °­ÇÔ";
+                return "ë§¤ìš° ê°•í•¨";
             default:
                 return "";
         }
@@ -219,7 +219,7 @@ public class Tool : MonoBehaviour
     {
         if (values.Length != rates.Length) {
 #if UNITY_EDITOR
-            print("¼Ó¼º °ªÀº " + rates.Length + "°³°¡ µÇ¾î¾ß ÇÕ´Ï´Ù.");
+            print("ì†ì„± ê°’ì€ " + rates.Length + "ê°œê°€ ë˜ì–´ì•¼ í•©ë‹ˆë‹¤.");
 #endif
             return;
         }
@@ -232,7 +232,7 @@ public class Tool : MonoBehaviour
         if (values.Length != radiuses.Length)
         {
 #if UNITY_EDITOR
-            print("¼Ó¼º °ªÀº " + radiuses.Length + "°³°¡ µÇ¾î¾ß ÇÕ´Ï´Ù.");
+            print("ì†ì„± ê°’ì€ " + radiuses.Length + "ê°œê°€ ë˜ì–´ì•¼ í•©ë‹ˆë‹¤.");
 #endif
             return;
         }
@@ -245,7 +245,7 @@ public class Tool : MonoBehaviour
         if (values.Length != speeds.Length)
         {
 #if UNITY_EDITOR
-            print("¼Ó¼º °ªÀº " + speeds.Length + "°³°¡ µÇ¾î¾ß ÇÕ´Ï´Ù.");
+            print("ì†ì„± ê°’ì€ " + speeds.Length + "ê°œê°€ ë˜ì–´ì•¼ í•©ë‹ˆë‹¤.");
 #endif
             return;
         }
@@ -271,7 +271,7 @@ public class Tool : MonoBehaviour
 
     protected void FixedUpdate()
     {
-        // ¿òÁ÷ÀÓ (¸ğµç µµ±¸ÀÇ °øÅëµÈ ºÎºĞ)
+        // ì›€ì§ì„ (ëª¨ë“  ë„êµ¬ì˜ ê³µí†µëœ ë¶€ë¶„)
         if (GameManager.instance.screenManager.CurrentScreen() != SCREEN.INGAME) return;
 
         if (GameManager.instance.CurrentPlayer.JoyStick.IsTouch)
@@ -279,7 +279,7 @@ public class Tool : MonoBehaviour
             Move(GameManager.instance.CurrentPlayer.JoyStick.MovePosition);
         }
 
-        // PC Å×½ºÆ® Àü¿ë
+        // PC í…ŒìŠ¤íŠ¸ ì „ìš©
 #if UNITY_EDITOR
         Vector2 movePos = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         Move(movePos.normalized);
@@ -289,14 +289,14 @@ public class Tool : MonoBehaviour
 #if UNITY_EDITOR
     private void Update()
     {
-        // µµ±¸¸¶´Ù ±â´ÉÀÌ ´Ş¶óÁø´Ù.
+        // ë„êµ¬ë§ˆë‹¤ ê¸°ëŠ¥ì´ ë‹¬ë¼ì§„ë‹¤.
         if (Input.GetKeyDown(KeyCode.Space)) Hit();
     }
 #endif
 
     public virtual void HitButtonDown()
     {
-        // ¸ğµç µµ±¸°¡ °øÅëÀ¸·Î °¡Áü
+        // ëª¨ë“  ë„êµ¬ê°€ ê³µí†µìœ¼ë¡œ ê°€ì§
         Hit();
 
 #if UNITY_EDITOR
@@ -306,7 +306,7 @@ public class Tool : MonoBehaviour
     
     public virtual void HitButtonUp()
     {
-        // ¸ğµç µµ±¸°¡ °øÅëÀ¸·Î °¡Áü
+        // ëª¨ë“  ë„êµ¬ê°€ ê³µí†µìœ¼ë¡œ ê°€ì§
     }
 
     public virtual void SetTool()
@@ -321,13 +321,13 @@ public class Tool : MonoBehaviour
 
     public virtual void Move(Vector3 movePosition)
     {
-        //// ¸¶¿ì½º ÁÂÇ¥¸¦ ¿ùµå ÁÂÇ¥·Î º¯È¯
+        //// ë§ˆìš°ìŠ¤ ì¢Œí‘œë¥¼ ì›”ë“œ ì¢Œí‘œë¡œ ë³€í™˜
         //Vector3 mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        //// ¸¶¿ì½º ÁÂÇ¥¿¡ µû¶ó ¿ÀºêÁ§Æ® ÀÌµ¿
+        //// ë§ˆìš°ìŠ¤ ì¢Œí‘œì— ë”°ë¼ ì˜¤ë¸Œì íŠ¸ ì´ë™
         //transform.position = new Vector3(mPos.x * speed, mPos.y * speed, 5);
 
-        // ½ºÅ©¸° ¹ş¾î³ªÁö ¸øÇÏ°Ô ¸·À½
+        // ìŠ¤í¬ë¦° ë²—ì–´ë‚˜ì§€ ëª»í•˜ê²Œ ë§‰ìŒ
         if (transform.position.x < -(GameManager.instance.CameraSize * 2))
         {
             transform.position = new Vector2(-(GameManager.instance.CameraSize * 2), transform.position.y);
@@ -359,31 +359,31 @@ public class Tool : MonoBehaviour
     {
         if (!canHit) return;
 
-        // ¶§¸° Àå¼Ò Ç¥½Ã ¿ÀºêÁ§Æ® »ı¼º
+        // ë•Œë¦° ì¥ì†Œ í‘œì‹œ ì˜¤ë¸Œì íŠ¸ ìƒì„±
         GameObject showHitObj = GameManager.instance.prefabManager.GetHit(HIT_OBJ_TYPE.SHOW_HIT);
         HitObjScript showHit = showHitObj.GetComponent<HitObjScript>();
-        // ¹ú·¹ Àâ¾Ò´ÂÁö È®ÀÎÇÏ´Â ¿ÀºêÁ§Æ® »ı¼º
+        // ë²Œë ˆ ì¡ì•˜ëŠ”ì§€ í™•ì¸í•˜ëŠ” ì˜¤ë¸Œì íŠ¸ ìƒì„±
         GameObject checkHitObj = GameManager.instance.prefabManager.GetHit(HIT_OBJ_TYPE.CHECK_HIT);
         HitCheckScript checkHit = checkHitObj.GetComponent<HitCheckScript>();
 
-        // ¿ÀºêÁ§Æ® Å©±â º¯°æ
+        // ì˜¤ë¸Œì íŠ¸ í¬ê¸° ë³€ê²½
         showHit.ChangeInfo(radius, hitDelay);
         checkHit.ChangeInfo(radius, damage, tool);
 
         showHit.ChangeImage();
 
-        // µµ±¸ À§Ä¡·Î ¿ÀºêÁ§Æ® ÀÌµ¿
+        // ë„êµ¬ ìœ„ì¹˜ë¡œ ì˜¤ë¸Œì íŠ¸ ì´ë™
         showHit.Show(transform.position);
         checkHit.Show(transform.position);
 
-        // ¶§¸®±â ÄğÅ¸ÀÓ
+        // ë•Œë¦¬ê¸° ì¿¨íƒ€ì„
         canHit = false;
         StartCoroutine(HitDelay());
 
-        // ¶§¸®´Â ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
+        // ë•Œë¦¬ëŠ” ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ
         GameManager.instance.CurrentPlayer.CurrentHitPos.GetComponent<ShowHitPos>().PlayHitAnimation();
 
-        // ¶§¸®´Â ¼Ò¸® Àç»ı
+        // ë•Œë¦¬ëŠ” ì†Œë¦¬ ì¬ìƒ
         GameManager.instance.soundManager.EffectPlay(tool);
     }
     

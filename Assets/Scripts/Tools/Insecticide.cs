@@ -7,22 +7,22 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 /*
- * »ìÃæÁ¦: »Ñ¸° °÷¿¡ ÀÏÁ¤ ½Ã°£µ¿¾È ¿¬±â¸¦ ¸Ó¹°°Ô ÇÏ°í
- * ±×°÷À» Áö³ª°¡´Â ¹ú·¹´Â µ¥¹ÌÁö¸¦ ÀÔ°ÔµÈ´Ù.
- * HitObj: °ø°İ ½Ã ¶ß´Â °ø°İ ÀÌ¹ÌÁö
- * HitCheckObj: °ø°İÀ» °¨ÁöÇÏ±â À§ÇÑ ¿ÀºêÁ§Æ®
+ * ì‚´ì¶©ì œ: ë¿Œë¦° ê³³ì— ì¼ì • ì‹œê°„ë™ì•ˆ ì—°ê¸°ë¥¼ ë¨¸ë¬¼ê²Œ í•˜ê³ 
+ * ê·¸ê³³ì„ ì§€ë‚˜ê°€ëŠ” ë²Œë ˆëŠ” ë°ë¯¸ì§€ë¥¼ ì…ê²Œëœë‹¤.
+ * HitObj: ê³µê²© ì‹œ ëœ¨ëŠ” ê³µê²© ì´ë¯¸ì§€
+ * HitCheckObj: ê³µê²©ì„ ê°ì§€í•˜ê¸° ìœ„í•œ ì˜¤ë¸Œì íŠ¸
  * GameManager.instance.CurrentPlayer.CurrentHitPos.GetComponent<ShowHitPos>()
- *  ¤¤ ÇÃ·¹ÀÌ¾î À§¿¡ ¶ß´Â µµ±¸ ÀÌ¹ÌÁö
+ *  ã„´ í”Œë ˆì´ì–´ ìœ„ì— ëœ¨ëŠ” ë„êµ¬ ì´ë¯¸ì§€
 */
 
 public class Insecticide : Tool
 {
-    [SerializeField] private Sprite HitObjImage; // ¿¬±â ÀÌ¹ÌÁö
-    [SerializeField] private Sprite ShowHitObjImage; // ¿¬±â°¡ ¼³Ä¡µÇ´Â °÷À» ¾Ë·ÁÁÖ´Â ÀÌ¹ÌÁö
+    [SerializeField] private Sprite HitObjImage; // ì—°ê¸° ì´ë¯¸ì§€
+    [SerializeField] private Sprite ShowHitObjImage; // ì—°ê¸°ê°€ ì„¤ì¹˜ë˜ëŠ” ê³³ì„ ì•Œë ¤ì£¼ëŠ” ì´ë¯¸ì§€
     [SerializeField] private float attackDuration;
     [SerializeField] private float attackDelay;
 
-    [Header("¡å »ç¿ë·® Á¤º¸")]
+    [Header("ì‚¬ìš©ëŸ‰ ì •ë³´")]
     [SerializeField] private int maxCount;
     [SerializeField] private GameObject showUseCanvas;
     [SerializeField] private TextMeshProUGUI showUseText;
@@ -40,7 +40,7 @@ public class Insecticide : Tool
 
         waitCantDelay = new WaitForSeconds(0.2f);
 
-        // ³²Àº »ç¿ë·® ¾Ë·ÁÁÖ´Â ÅØ½ºÆ® ÃÊ±âÈ­
+        // ë‚¨ì€ ì‚¬ìš©ëŸ‰ ì•Œë ¤ì£¼ëŠ” í…ìŠ¤íŠ¸ ì´ˆê¸°í™”
         showUseCanvas.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
         showUseCanvas.GetComponent<Canvas>().worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         showMaxUseText.text = "/ " + maxCount;
@@ -67,36 +67,36 @@ public class Insecticide : Tool
     {
         if (!canHit) return;
 
-        // ¶§¸° Àå¼Ò Ç¥½Ã ¿ÀºêÁ§Æ® »ı¼º
+        // ë•Œë¦° ì¥ì†Œ í‘œì‹œ ì˜¤ë¸Œì íŠ¸ ìƒì„±
         GameObject showHitObj = GameManager.instance.prefabManager.GetHit(HIT_OBJ_TYPE.SHOW_HIT);
         HitObjScript showHit = showHitObj.GetComponent<HitObjScript>();
-        // ¹ú·¹ Àâ¾Ò´ÂÁö È®ÀÎÇÏ´Â ¿ÀºêÁ§Æ® »ı¼º
+        // ë²Œë ˆ ì¡ì•˜ëŠ”ì§€ í™•ì¸í•˜ëŠ” ì˜¤ë¸Œì íŠ¸ ìƒì„± 
         GameObject checkHitObj = GameManager.instance.prefabManager.GetHit(HIT_OBJ_TYPE.CHECK_HIT);
         HitCheckScript checkHit = checkHitObj.GetComponent<HitCheckScript>();
 
-        // ¿ÀºêÁ§Æ® ¼³Á¤ º¯°æ
+        // ì˜¤ë¸Œì íŠ¸ ì„¤ì • ë³€ê²½
         showHit.ChangeInfo(radius, attackDuration);
         checkHit.ChangeInfo(radius, damage, tool, attackDuration, attackDelay, false);
 
         showHit.ChangeImage(HitObjImage);
         checkHit.ChangeImage(HitObjImage);
 
-        // µµ±¸ À§Ä¡·Î ¿ÀºêÁ§Æ® ÀÌµ¿
+        // ë„êµ¬ ìœ„ì¹˜ë¡œ ì˜¤ë¸Œì íŠ¸ ì´ë™
         showHit.Show(transform.position);
         checkHit.Show(transform.position);
 
 
-        // ¶§¸®±â ÄğÅ¸ÀÓ
+        // ë•Œë¦¬ê¸° ì¿¨íƒ€ì„
         canHit = false;
         StartCoroutine(HitDelay());
 
-        // ¶§¸®´Â ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
+        // ë•Œë¦¬ëŠ” ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ
         GameManager.instance.CurrentPlayer.CurrentHitPos.GetComponent<ShowHitPos>().PlayHitAnimation(tool, hitDelay);
 
-        // ¶§¸®´Â ¼Ò¸® Àç»ı
+        // ë•Œë¦¬ëŠ” ì†Œë¦¬ ì¬ìƒ
         GameManager.instance.soundManager.EffectPlay(tool);
 
-        // ÇÃ·¹ÀÌ¾î¿¡°Ô ´õÀÌ»ó »ç¿ëÇÒ ¼ö ¾øÀ½À» ¾Ë·ÁÁÜ
+        // í”Œë ˆì´ì–´ì—ê²Œ ë”ì´ìƒ ì‚¬ìš©í•  ìˆ˜ ì—†ìŒì„ ì•Œë ¤ì¤Œ
         if (count >= maxCount)
         {
             StartCoroutine(CantUse());

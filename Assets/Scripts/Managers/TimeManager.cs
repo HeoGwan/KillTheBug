@@ -8,8 +8,8 @@ public class TimeManager : MonoBehaviour
 {
     public TextMeshProUGUI[] showTime;
 
-    float time = 0.0f; // Á¤»ê ½Ã°£ Áö³µ´ÂÁö Ã¼Å©ÇÏ´Â º¯¼ö
-    float totalTime = 0.0f; // °ÔÀÓ ½Ã°£ ¾Ë·ÁÁÖ´Â º¯¼ö
+    float time = 0.0f; // ì •ì‚° ì‹œê°„ ì§€ë‚¬ëŠ”ì§€ ì²´í¬í•˜ëŠ” ë³€ìˆ˜
+    float totalTime = 0.0f; // ê²Œì„ ì‹œê°„ ì•Œë ¤ì£¼ëŠ” ë³€ìˆ˜
     public bool isTimerActive = false;
 
     private int minute;

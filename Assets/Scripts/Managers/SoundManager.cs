@@ -41,7 +41,6 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        // ����� ��� AudioSource
         BGMSound = GameObject.Find("BGM").GetComponent<AudioSource>();
         EffectSound = GameObject.Find("Effect").GetComponent<AudioSource>();
         UIEffectSound = GameObject.Find("UIEffect").GetComponent<AudioSource>();

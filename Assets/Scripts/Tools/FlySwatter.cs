@@ -4,7 +4,7 @@ using UnityEngine;
 using CESCO;
 
 /*
- * ÆÄ¸®Ã¤´Â ¸Ç¼Õ¿¡ ºñÇØ ¹üÀ§°¡ Á¶±İ ´õ Å©´Ù.
+ * íŒŒë¦¬ì±„ëŠ” ë§¨ì†ì— ë¹„í•´ ë²”ìœ„ê°€ ì¡°ê¸ˆ ë” í¬ë‹¤.
 */
 
 public class FlySwatter : Tool

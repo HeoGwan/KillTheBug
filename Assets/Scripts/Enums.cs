@@ -88,27 +88,27 @@ namespace CESCO
 
     public enum TOOL_RATE
     {
-        SUPER_SLOW,     // ∏≈øÏ ¥¿∏≤
-        SLOW,           //   ¥¿∏≤
-        NORMAL,         //   ∫∏≈Î
-        FAST,           //   ∫¸∏ß
-        SUPER_FAST      // ∏≈øÏ ∫¸∏ß
+        SUPER_SLOW,     // Îß§Ïö∞ ÎäêÎ¶º
+        SLOW,           //   ÎäêÎ¶º
+        NORMAL,         //   Î≥¥ÌÜµ
+        FAST,           //   Îπ†Î¶Ñ
+        SUPER_FAST      // Îß§Ïö∞ Îπ†Î¶Ñ
     }
 
     public enum TOOL_RADIUS
     {
-        SMALL,          // ¿€¿Ω
-        MEDIUM,         // ∫∏≈Î
-        LARGE,          //  ≈≠
+        SMALL,          // ÏûëÏùå
+        MEDIUM,         // Î≥¥ÌÜµ
+        LARGE,          //  ÌÅº
     }
         
     public enum TOOL_SPEED
     {
-        SUPER_SLOW,     // ∏≈øÏ ¥¿∏≤
-        SLOW,           //   ¥¿∏≤
-        NORMAL,         //   ∫∏≈Î
-        FAST,           //   ∫¸∏ß
-        SUPER_FAST      // ∏≈øÏ ∫¸∏ß
+        SUPER_SLOW,     // Îß§Ïö∞ ÎäêÎ¶º
+        SLOW,           //   ÎäêÎ¶º
+        NORMAL,         //   Î≥¥ÌÜµ
+        FAST,           //   Îπ†Î¶Ñ
+        SUPER_FAST      // Îß§Ïö∞ Îπ†Î¶Ñ
     }
 
     public enum TOOL_DAMAGE

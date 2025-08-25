@@ -57,17 +57,17 @@ public class Bug : MonoBehaviour
 
     //protected virtual void Init()
     //{
-    //    //// Ä«¸Ş¶ó¿¡ ÇØ´çÇÏ´Â ÁÂÇ¥ ¾ò¾î¿À±â
+    //    //// ì¹´ë©”ë¼ì— í•´ë‹¹í•˜ëŠ” ì¢Œí‘œ ì–»ì–´ì˜¤ê¸°
     //    //float yPos = Camera.main.orthographicSize;
     //    //float xPos = yPos * Camera.main.aspect;
 
-    //    //// Ä«¸Ş¶ó ³»¿¡¼­ ·£´ıÇÑ ÁÂÇ¥·Î ¹ú·¹ »ı¼º
+    //    //// ì¹´ë©”ë¼ ë‚´ì—ì„œ ëœë¤í•œ ì¢Œí‘œë¡œ ë²Œë ˆ ìƒì„±
     //    //float randomX = Random.Range(-xPos, xPos);
     //    //float randomY = Random.Range(-yPos, yPos);
     //    //transform.position = new Vector2(randomX, randomY);
     //    transform.localScale = new Vector2(this.size, this.size);
 
-    //    // ÇÊ¿äÇÑ º¯¼ö ÃÊ±âÈ­
+    //    // í•„ìš”í•œ ë³€ìˆ˜ ì´ˆê¸°í™”
     //    isCollision = false;
     //    isMoving = true;
     //    ps = GetComponent<ParticleSystem>();
@@ -78,7 +78,7 @@ public class Bug : MonoBehaviour
 
     public GameObject SetBug(Vector2 position)
     {
-        // ¹ú·¹ ¼ÒÈ¯ ½Ã ¼³Á¤ÇÏ´Â ºÎºĞ
+        // ë²Œë ˆ ì†Œí™˜ ì‹œ ì„¤ì •í•˜ëŠ” ë¶€ë¶„
         transform.position = position;
 
         float bugSize = Random.Range(size - sizeDifference, size + sizeDifference);
@@ -97,7 +97,7 @@ public class Bug : MonoBehaviour
 
     private void Awake()
     {
-        // ÇÊ¿äÇÑ º¯¼ö ÃÊ±âÈ­
+        // í•„ìš”í•œ ë³€ìˆ˜ ì´ˆê¸°í™”
         isCollision = false;
         isMoving = true;
         ps = GetComponent<ParticleSystem>();
@@ -122,16 +122,16 @@ public class Bug : MonoBehaviour
 
         sprite.flipY = transform.position.x < GameManager.instance.CurrentTarget.transform.position.x ? true : false;
 
-        // Ãæµ¹ °Ë»ç ¹× ¿òÁ÷ÀÓ
+        // ì¶©ëŒ ê²€ì‚¬ ë° ì›€ì§ì„
         if (isCollision)
         {
-            // Å¸°Ù¿¡ ºÎµúÇûÀ» °æ¿ì
+            // íƒ€ê²Ÿì— ë¶€ë”ªí˜”ì„ ê²½ìš°
             Vector2 _target = transform.position + direction;
             transform.position = Vector2.MoveTowards(transform.position, _target, speed * backSpeed * Time.deltaTime);
         }
         else
         {
-            // ¿òÁ÷ÀÓ
+            // ì›€ì§ì„
             Move();
         }
 
@@ -199,7 +199,7 @@ public class Bug : MonoBehaviour
 
         if (healthPoint <= 0)
         {
-            // Ã¼·ÂÀÌ ´Ù ¶³¾îÁ® »ç¸Á ½Ã 
+            // ì²´ë ¥ì´ ë‹¤ ë–¨ì–´ì ¸ ì‚¬ë§ ì‹œ 
             isMoving = false;
             GameManager.instance.scoreManager.PlusScore();
             GetComponent<BoxCollider2D>().enabled = false;
@@ -218,7 +218,7 @@ public class Bug : MonoBehaviour
 
     public void SetHPCanvas()
     {
-        // Ã¼·Â¹Ù ¼³Á¤
+        // ì²´ë ¥ë°” ì„¤ì •
         hpCanvas = transform.GetChild(0).gameObject;
         hpCanvas.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
         hpCanvas.GetComponent<Canvas>().worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -232,7 +232,7 @@ public class Bug : MonoBehaviour
 
     private void AudioSetting(bool isDeath)
     {
-        // »ç¸ÁÇÒ °æ¿ì AudioSourceÀÇ ·çÇÁ¸¦ ²ô°í »ç¸Á »ç¿îµå Áß ·£´ıÀ¸·Î ÇÏ³ª¸¦ Àç»ıÇÑ´Ù.
+        // ì‚¬ë§í•  ê²½ìš° AudioSourceì˜ ë£¨í”„ë¥¼ ë„ê³  ì‚¬ë§ ì‚¬ìš´ë“œ ì¤‘ ëœë¤ìœ¼ë¡œ í•˜ë‚˜ë¥¼ ì¬ìƒí•œë‹¤.
         if (isDeath)
         {
             int audioIndex = Random.Range(0, deathAudio.Length);
@@ -241,7 +241,7 @@ public class Bug : MonoBehaviour
         }
         else
         {
-            // Æò¼Ò¿¡´Â audioSourceÀÇ ·çÇÁ¸¦ ÄÑ°í ÀÏ¹İ »ç¿îµå¸¦ Àç»ıÇÑ´Ù.
+            // í‰ì†Œì—ëŠ” audioSourceì˜ ë£¨í”„ë¥¼ ì¼œê³  ì¼ë°˜ ì‚¬ìš´ë“œë¥¼ ì¬ìƒí•œë‹¤.
             audioSource.loop = true;
             audioSource.clip = moveAudio;
         }

@@ -53,8 +53,8 @@ public class ScoreManager : MonoBehaviour
 
     private void ShowScore()
     {
-        ScoreText.text = "ÀâÀº ¹ú·¹ ¼ö: " + score;
-        TotalScoreText.text = "ÃÑ ÀâÀº ¹ú·¹ ¼ö: " + totalScore;
+        ScoreText.text = "ì¡ì€ ë²Œë ˆ ìˆ˜: " + score;
+        TotalScoreText.text = "ì´ ì¡ì€ ë²Œë ˆ ìˆ˜: " + totalScore;
     }
 
     public void SaveScore() { totalScore += score; }

@@ -56,7 +56,7 @@ public class SpawnManager : MonoBehaviour
         //minDelay -= Random.Range(0.01f, 0.1f);
         if (min < max)
         {
-            max -= Random.Range(0.1f, max / 10); // 재량껏 바꾸기
+            max -= Random.Range(0.1f, max / 10);
         }
         ChangeBugs();
     }

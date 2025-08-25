@@ -1,4 +1,4 @@
-using System.IO;
+ï»¿using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,7 +24,7 @@ public struct ScoreData
 public class GameManager : MonoBehaviour
 {
 
-    // ½Ì±ÛÅæ
+    // ì‹±ê¸€í†¤
     public static GameManager instance;
 
     private string path;
@@ -54,11 +54,11 @@ public class GameManager : MonoBehaviour
 
     public float CameraSize;
 
-    // °ÔÀÓ °ü·Ã º¯¼ö
+    // ê²Œì„ ê´€ë ¨ ë³€ìˆ˜
     private GAME_STATE gameState = GAME_STATE.START;
     public GAME_STATE GameState { get { return gameState; } }
     private int level = 0;
-    [SerializeField] private int levelStep = 3; // ÇØ´ç º¯¼ö¿¡ µû¶ó ¹ú·¹ÀÇ Ã¼·ÂÀÌ ³ô¾ÆÁü
+    [SerializeField] private int levelStep = 3; // í•´ë‹¹ ë³€ìˆ˜ì— ë”°ë¼ ë²Œë ˆì˜ ì²´ë ¥ì´ ë†’ì•„ì§
     public int Level { get { return level; } }
     public int LevelStep { get { return levelStep; } }
 
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
     //private float maxDelay = 1.9f;
     [SerializeField] private uint payTime = 90;
 
-    [Header("¡å Managers")]
+    [Header("â–¼ Managers")]
     #region Managers
     public ToolManager toolManager;
     public TimeManager timeManager;
@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
         else
         {
 #if UNITY_EDITOR
-            Debug.Log("°ÔÀÓ ¸Å´ÏÀú Á¸Àç");
+            Debug.Log("ê²Œì„ ë§¤ë‹ˆì € ì¡´ì¬");
 #endif
             Destroy(gameObject);
         }
@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
 
             if (timeManager.RunningTime >= payTime)
             {
-                // °ÔÀÓ ÀÏ½ÃÁ¤Áö ÈÄ Á¤»ê ui Ãâ·Â
+                // ê²Œì„ ì¼ì‹œì •ì§€ í›„ ì •ì‚° ui ì¶œë ¥
                 gameState = GAME_STATE.PAY;
                 GamePause();
             }
@@ -175,8 +175,8 @@ public class GameManager : MonoBehaviour
 
     public void GameInit()
     {
-        // °ÔÀÓ »óÅÂ ÃÊ±âÈ­
-        // ½Ã°£, ½ºÄÚ¾î ÃÊ±âÈ­
+        // ê²Œì„ ìƒíƒœ ì´ˆê¸°í™”
+        // ì‹œê°„, ìŠ¤ì½”ì–´ ì´ˆê¸°í™”
         timeManager.Init();
         scoreManager.Init();
         gameState = GAME_STATE.RUNNING;
@@ -190,30 +190,30 @@ public class GameManager : MonoBehaviour
     {
         GameInit();
 
-        // ¸¶¿ì½º ¼û±â±â
+        // ë§ˆìš°ìŠ¤ ìˆ¨ê¸°ê¸°
         //mouseManager.InVisible();
 
-        // Å¸°Ù ½ºÆù
+        // íƒ€ê²Ÿ ìŠ¤í°
         target.SetActive(true);
 
-        // ¹ú·¹(Àû) ½ºÆù
+        // ë²Œë ˆ(ì ) ìŠ¤í°
         //BugSpawn();
         //spawnManager.SpawnBugs();
         spawnManager.StartSpawnBug();
 
-        // Å¸ÀÌ¸Ó ½ÃÀÛ
+        // íƒ€ì´ë¨¸ ì‹œì‘
         timeManager.TimerStart();
 
-        // ÇÃ·¹ÀÌ¾î ½ºÆù
+        // í”Œë ˆì´ì–´ ìŠ¤í°
         player.SetActive(true);
 
-        // È­¸é ÀüÈ¯
+        // í™”ë©´ ì „í™˜
         screenManager.ChangeScreen(SCREEN.INGAME);
     }
 
     public void GameOver()
     {
-        // °ÔÀÓ ¿À¹ö Á¶°Ç
+        // ê²Œì„ ì˜¤ë²„ ì¡°ê±´
         GameEnd();
         databaseManager.GetData(false);
         screenManager.ChangeScreen(SCREEN.GAMEOVER);
@@ -221,44 +221,44 @@ public class GameManager : MonoBehaviour
 
     public void GameEnd()
     {
-        // °ÔÀÓ »óÅÂ NONEÀ¸·Î º¯°æ
+        // ê²Œì„ ìƒíƒœ NONEìœ¼ë¡œ ë³€ê²½
         gameState = GAME_STATE.START;
         Time.timeScale = 0;
         //mouseManager.Visible();
         CancelInvoke("BugSpawn");
 
-        // ÇÃ·¹ÀÌ¾î, Å¸°Ù, ¹ú·¹ ¸ğµÎ »èÁ¦
+        // í”Œë ˆì´ì–´, íƒ€ê²Ÿ, ë²Œë ˆ ëª¨ë‘ ì‚­ì œ
         player.SetActive(false);
         target.SetActive(false);
         spawnManager.RemoveBug();
 
-        // °­È­, »óÁ¡µµ ´Ù ÃÊ±âÈ­ ÇØ¾ß ÇÔ
-        // ¸Å´ÏÀú ÃÊ±âÈ­
+        // ê°•í™”, ìƒì ë„ ë‹¤ ì´ˆê¸°í™” í•´ì•¼ í•¨
+        // ë§¤ë‹ˆì € ì´ˆê¸°í™”
         reinforceManager.Init();
         shopManager.Init();
         spawnManager.Init();
         //screenManager.GoMain();
 
-        // ÃÖÁ¾ ½ºÄÚ¾î ÀúÀå ¹× ÃÊ±âÈ­
+        // ìµœì¢… ìŠ¤ì½”ì–´ ì €ì¥ ë° ì´ˆê¸°í™”
         gameScore = scoreManager.ScoreInit();
-        finalScore.text = gameScore + "¸¶¸®";
+        finalScore.text = gameScore + "ë§ˆë¦¬";
         databaseManager.PutBackScores();
     }
 
     public void GameRule()
     {
-        // °ÔÀÓ ¹æ¹ı È­¸éÀ» º¸¿©ÁÜ
+        // ê²Œì„ ë°©ë²• í™”ë©´ì„ ë³´ì—¬ì¤Œ
         screenManager.ChangeScreen(SCREEN.GAMERULE);
     }
 
     public void GameSetting()
     {
-        // ¹è°æÀ½ ¹Ù²Ù±â
+        // ë°°ê²½ìŒ ë°”ê¾¸ê¸°
 
-        // °ÔÀÓ ÁøÇà ½Ã °ÔÀÓ ¸ØÃã
+        // ê²Œì„ ì§„í–‰ ì‹œ ê²Œì„ ë©ˆì¶¤
         Time.timeScale = 0;
 
-        // uiManager¸¦ ÀÌ¿ëÇÏ¿© È­¸é ÀüÈ¯
+        // uiManagerë¥¼ ì´ìš©í•˜ì—¬ í™”ë©´ ì „í™˜
         screenManager.ChangeScreen(SCREEN.SETTING);
         settingManager.Enable();
     }
@@ -281,57 +281,57 @@ public class GameManager : MonoBehaviour
 
     public void Resume()
     {
-        // È­¸é ÀüÈ¯(Pause->InGame) µ¹¾Æ°¡±â
+        // í™”ë©´ ì „í™˜(Pause->InGame) ëŒì•„ê°€ê¸°
         screenManager.PrevScreen();
 
-        // ¸¶¿ì½º Ä¿¼­ ¼û±â±â
+        // ë§ˆìš°ìŠ¤ ì»¤ì„œ ìˆ¨ê¸°ê¸°
         //mouseManager.InVisible();
 
         player.SetActive(true);
 
-        // ½Ã°£ Á¶Á¤
+        // ì‹œê°„ ì¡°ì •
         Time.timeScale = 1;
 
         spawnManager.StartSpawnBug();
 
-        // È°¼ºÈ­ µÈ ¹ú·¹µéÀÇ ¼Ò¸®¸¦ ÄÔ
+        // í™œì„±í™” ëœ ë²Œë ˆë“¤ì˜ ì†Œë¦¬ë¥¼ ì¼¬
         Stack<Bug> bugs = prefabManager.GetActiveBugs(spawnManager.BugType);
         while (bugs.Count > 0)
         {
             bugs.Pop().AudioPlay();
         }
 
-        // °ÔÀÓ ÀÏ½ÃÁ¤Áö Ç®±â
+        // ê²Œì„ ì¼ì‹œì •ì§€ í’€ê¸°
         gameState = GAME_STATE.RUNNING;
     }
 
     public void Restart()
     {
-        // °ÔÀÓ Àç½ÃÀÛ
-        // °ÔÀÓ Á¾·á ÈÄ ´Ù½Ã ½ÃÀÛ
+        // ê²Œì„ ì¬ì‹œì‘
+        // ê²Œì„ ì¢…ë£Œ í›„ ë‹¤ì‹œ ì‹œì‘
         GameEnd();
         GameStart();
     }
 
     public void Pause()
     {
-        // ÀÏ½ÃÁ¤Áö
-        // È­¸é ÀüÈ¯
+        // ì¼ì‹œì •ì§€
+        // í™”ë©´ ì „í™˜
         screenManager.ChangeScreen(SCREEN.PAUSE);
 
-        // ¸¶¿ì½º Ä¿¼­ º¸ÀÌ±â
+        // ë§ˆìš°ìŠ¤ ì»¤ì„œ ë³´ì´ê¸°
         //mouseManager.Visible();
 
-        // ½Ã°£ Á¶Á¤
+        // ì‹œê°„ ì¡°ì •
         Time.timeScale = 0;
 
-        // °ÔÀÓ ÀÏ½ÃÁ¤Áö
+        // ê²Œì„ ì¼ì‹œì •ì§€
         gameState = GAME_STATE.PAUSE;
 
-        // ¹ú·¹ ½ºÆù Áß´Ü
+        // ë²Œë ˆ ìŠ¤í° ì¤‘ë‹¨
         spawnManager.StopSpawnBug();
 
-        // È°¼ºÈ­ µÈ ¹ú·¹µéÀÇ ¼Ò¸®¸¦ ²û
+        // í™œì„±í™” ëœ ë²Œë ˆë“¤ì˜ ì†Œë¦¬ë¥¼ ë”
         Stack<Bug> bugs = prefabManager.GetActiveBugs(spawnManager.BugType);
         while (bugs.Count > 0)
         {
@@ -341,11 +341,11 @@ public class GameManager : MonoBehaviour
 
     public void Pay()
     {
-        // Á¤»ê ÈÄ °­È­ ¹× ±¸¸Å ÁøÇà
-        // °ÔÀÓ ÀÏ½ÃÁ¤Áö
+        // ì •ì‚° í›„ ê°•í™” ë° êµ¬ë§¤ ì§„í–‰
+        // ê²Œì„ ì¼ì‹œì •ì§€
         Time.timeScale = 0;
 
-        // ¸¶¿ì½º º¸ÀÌµµ·Ï
+        // ë§ˆìš°ìŠ¤ ë³´ì´ë„ë¡
         //mouseManager.Visible();
 
         player.SetActive(false);
@@ -353,24 +353,24 @@ public class GameManager : MonoBehaviour
         payManager.PayMoney();
         payManager.ShowMoney();
 
-        // Á¤»ê È­¸é Ãâ·Â
+        // ì •ì‚° í™”ë©´ ì¶œë ¥
         screenManager.ChangeScreen(SCREEN.PAY);
 
-        // ¹ú·¹ ½ºÆù Áß´Ü
+        // ë²Œë ˆ ìŠ¤í° ì¤‘ë‹¨
         spawnManager.StopSpawnBug();
 
-        // È°¼ºÈ­ µÈ ¹ú·¹µéÀÇ ¼Ò¸®¸¦ ²û
+        // í™œì„±í™” ëœ ë²Œë ˆë“¤ì˜ ì†Œë¦¬ë¥¼ ë”
         Stack<Bug> bugs = prefabManager.GetActiveBugs(spawnManager.BugType);
         while (bugs.Count > 0)
         {
-            // È°¼ºÈ­ µÈ ¹ú·¹µéÀÇ ¼Ò¸®¸¦ ²û
+            // í™œì„±í™” ëœ ë²Œë ˆë“¤ì˜ ì†Œë¦¬ë¥¼ ë”
             bugs.Pop().AudioPause();
         }
     }
 
     public void NextGame()
     {
-        // Á¤»ê ¹× °­È­, ±¸¸Å ÁøÇà ÈÄ ´ÙÀ½ °ÔÀÓ ÁøÇà
+        // ì •ì‚° ë° ê°•í™”, êµ¬ë§¤ ì§„í–‰ í›„ ë‹¤ìŒ ê²Œì„ ì§„í–‰
         ++level;
         stageManager.NextStage();
         player.SetActive(true);
@@ -382,7 +382,7 @@ public class GameManager : MonoBehaviour
 
     public void GameMain()
     {
-        // °ÔÀÓÀ» Á¾·á½ÃÅ°°í ¸ŞÀÎ È­¸éÀ¸·Î ÀÌµ¿ÇÑ´Ù.
+        // ê²Œì„ì„ ì¢…ë£Œì‹œí‚¤ê³  ë©”ì¸ í™”ë©´ìœ¼ë¡œ ì´ë™í•œë‹¤.
         GameEnd();
         screenManager.GoMain();
     }
@@ -420,22 +420,22 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // ½ºÄÚ¾î ÀúÀå ±â´É
+        // ìŠ¤ì½”ì–´ ì €ì¥ ê¸°ëŠ¥
         if (databaseManager.WriteData(nickname, gameScore))
         {
 #if UNITY_EDITOR
-            print("µ¥ÀÌÅÍ ÀúÀå ¿Ï·á");
+            print("ë°ì´í„° ì €ì¥ ì™„ë£Œ");
 #endif
         }
         else
         {
 #if UNITY_EDITOR
-            print("µ¥ÀÌÅÍ ÀúÀå ½ÇÆĞ");
+            print("ë°ì´í„° ì €ì¥ ì‹¤íŒ¨");
 #endif
         }
         nicknameField.text = "";
 
-        // µ¥ÀÌÅÍ¸¦ ÀúÀåÇßÀ¸´Ï ±âÁ¸¿¡ ÀÖ´ø ½ºÄÚ¾î ¸ñ·ÏÀ» °»½ÅÇØÁØ´Ù.
+        // ë°ì´í„°ë¥¼ ì €ì¥í–ˆìœ¼ë‹ˆ ê¸°ì¡´ì— ìˆë˜ ìŠ¤ì½”ì–´ ëª©ë¡ì„ ê°±ì‹ í•´ì¤€ë‹¤.
         scoreManager.InitScoreData();
         inputNicknameObj.SetActive(false);
         isSave = true;

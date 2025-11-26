@@ -81,3 +81,5 @@ ProjectSettings/GvhProjectSettings.xml
 
 # Android Library
 **/[Aa]ssets/[Pp]lugins/[Aa]ndroid/[Ff]irebaseApp.androidlib/[Rr]es/[Vv]alues/*
+
+.DS_Store

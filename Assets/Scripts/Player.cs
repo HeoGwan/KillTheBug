@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using CESCO;
+using Unity.VisualScripting;
 using UnityEngine.UI;
 using UnityEditor;
 
@@ -13,6 +14,11 @@ using UnityEditor;
 
 public class Player : MonoBehaviour
 {
+    [Space, Header("Manager")]
+    [SerializeField] private ToolManager toolManager;
+    
+    [Space]
+    [SerializeField] private Image toolImage;
     [SerializeField] private TOOL toolIndex = TOOL.HAND;
     [SerializeField] private GameObject joyStickObj;
     [SerializeField] private Button hitButton;
@@ -196,6 +202,10 @@ public class Player : MonoBehaviour
         // Hit 버튼의 도구 변경
         ChangeTool();
 
+        // 공격 버튼의 도구 이미지 변경
+        Sprite image = toolManager.GetToolImage(curTool.ToolType);
+        toolImage.sprite = image;
+        
         // 선택한 도구의 Hit 좌표를 보여줌
         hitPos.SetCurTool(selectTool);
         // 도구가 변경되었다는 것을 알려줌
@@ -223,6 +233,10 @@ public class Player : MonoBehaviour
 
         // Hit 버튼의 도구 변경
         ChangeTool();
+
+        // 공격 버튼의 도구 이미지 변경
+        Sprite image = toolManager.GetToolImage(curTool.ToolType);
+        toolImage.sprite = image;
 
         // 선택한 도구의 Hit 좌표를 보여줌
         hitPos.SetCurTool(selectTool);
@@ -253,6 +267,10 @@ public class Player : MonoBehaviour
 
         // Hit 버튼의 도구 변경
         ChangeTool();
+
+        // 공격 버튼의 도구 이미지 변경
+        Sprite image = toolManager.GetToolImage(curTool.ToolType);
+        toolImage.sprite = image;
 
         // 선택한 도구의 Hit 좌표를 보여줌
         hitPos.SetCurTool(selectTool);

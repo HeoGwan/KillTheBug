@@ -48,9 +48,11 @@ public class AdMobManager : MonoBehaviour
             CreateBannerView();
         }
 
-        AdRequest adRequest = new AdRequest.Builder()
-            .AddKeyword("unity-admob-sample")
-            .Build();
+        // AdRequest adRequest = new AdRequest.Builder()
+        //     .AddKeyword("unity-admob-sample")
+        //     .Build();
+        AdRequest adRequest = new AdRequest();
+        adRequest.Keywords.Add("unity-admob-sample");
 
 #if UNITY_EDITOR
         print("Loading banner Ad.");
